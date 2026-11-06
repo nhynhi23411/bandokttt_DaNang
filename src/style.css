@@ -129,3 +129,6 @@ body.printing .legend{display:block}
 body.printing .legend{background:#fff;color:#000}
 @media print{.legend{background:#fff!important;color:#000!important}}
 .peak{font-size:20px;line-height:22px;text-align:center;color:#F2B705;text-shadow:0 0 3px #000,0 0 3px #000}
+.adesc{margin-top:12px;padding:10px 12px;background:var(--bg);border:1px solid var(--line);border-radius:8px}
+.adesc h4{margin:0 0 6px}
+.adesc dl{margin:0;font-size:12.5px}.adesc dt{color:var(--muted);font-weight:600;margin-top:6px}.adesc dd{margin:2px 0 0}

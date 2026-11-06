@@ -181,11 +181,13 @@ function showDetail(f) {
   if (lineNames) vs.length = 0, g.coordinates.forEach((c, i) => vs.push({ name: lineNames[i], lon: c[0], lat: c[1] }));
   const vrows = vs.map((v) => `<tr><td>${esc(v.name)}</td><td>${dec(v.lat)}<br>${dec(v.lon)}</td><td>${dms(v.lat, true)}<br>${dms(v.lon, false)}</td></tr>`).join('');
   const src = state.sources.find((s) => s.id === p.source);
-  const html = `${head}<div class="rows">${rows.join('')}</div>
+  const area = state.areas.find((a) => a.id === areaOf(p.id) || (p.layer === 'bvlos_diem' && a.id === 'bvlos'));
+  const areaHtml = area ? `<div class="adesc"><h4>Mô tả khu vực</h4><dl><dt>Vị trí</dt><dd>${esc(area.location)}</dd><dt>Dùng để làm gì</dt><dd>${esc(area.purpose)}</dd><dt>Giới hạn và điều kiện</dt><dd>${esc(area.limits)}</dd><dt>Căn cứ</dt><dd>${esc(area.basis)}</dd></dl></div>` : '';
+  const html = `${head}<div class="rows">${rows.join('')}</div>${areaHtml}
     <h4>${isPoly || g.type === 'LineString' ? 'Đỉnh' : 'Tọa độ'} <small>(vĩ độ, kinh độ · WGS-84)</small></h4>
     <table class="vt"><thead><tr><th></th><th>Độ thập phân</th><th>Độ-phút-giây</th></tr></thead><tbody>${vrows}</tbody></table>
     <div class="btns"><button class="btn small" id="cp">Sao chép tọa độ</button><button class="btn small" id="ge">Mở trong Google Earth (KML)</button></div>
-    <p class="src"><a href="#" data-src="1">Mô tả khu vực và căn cứ của Đề án</a></p>
+    <p class="src"><a href="#" data-src="1">Xem mô tả tất cả khu vực</a></p>
     <p class="hint">Tọa độ là đề xuất của Đề án, chưa phải ranh giới được phép bay.</p>`;
   $('#detail-body').innerHTML = html;
   $('#detail').hidden = false;
@@ -196,7 +198,7 @@ function showDetail(f) {
     setTimeout(() => ($('#cp').textContent = 'Sao chép tọa độ'), 1500);
   };
   $('#ge').onclick = () => download(`${p.id}.kml`, toKML([f], p.name), 'application/vnd.google-earth.kml+xml');
-  $('[data-src]', $('#detail-body')).onclick = (e) => { e.preventDefault(); openAreas(areaOf(p.id)); };
+  $('[data-src]', $('#detail-body')).onclick = (e) => { e.preventDefault(); openAreas(); };
   level('detail');
 }
 function clearHighlight() { if (state.hl) { map.removeLayer(state.hl); state.hl = null; } }
