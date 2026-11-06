@@ -184,7 +184,7 @@ function showDetail(f) {
   if (p.id.startsWith('son-tra')) add('Cự ly tham khảo đến sân bay', 'từ 8,9 km đến 16,6 km (biên bản khảo sát)');
   if (p.note) add('Ghi chú', esc(p.note));
   const vs = vertexNames(f);
-  const lineNames = p.id === 'dcc-17r-35l' ? ['Đầu 35L', 'Đầu 17R'] : p.id === 'hanh-lang-cu-lao-cham' ? ['Điểm xuất phát (ven biển Sơn Trà)', 'Điểm đích (Cù Lao Chàm)'] : null;
+  const lineNames = p.id === 'dcc-17r-35l' ? ['Đầu 35L', 'Đầu 17R'] : null;
   if (lineNames) vs.length = 0, g.coordinates.forEach((c, i) => vs.push({ name: lineNames[i], lon: c[0], lat: c[1] }));
   const vrows = vs.map((v) => `<tr><td>${esc(v.name)}</td><td>${dec(v.lat)}<br>${dec(v.lon)}</td><td>${dms(v.lat, true)}<br>${dms(v.lon, false)}</td></tr>`).join('');
   const src = state.sources.find((s) => s.id === p.source);
@@ -415,7 +415,7 @@ function buildSidebar() {
     <div><i class="dot" style="background:#D02020"></i>Vùng xanh Sơn Trà (đệm 100 m)</div>
     <div><i class="sw" style="font-style:normal;text-align:center;line-height:10px">★</i>Sân bay Đà Nẵng</div>
     <div><i class="sw" style="color:#F2B705;text-align:center;line-height:10px">▲</i>Bà Nà Hills</div>
-    <div><i class="sw" style="border-top:3px dashed #00B8D9;height:0"></i>Hành lang Cù Lao Chàm</div>
+    <div><i class="sw" style="background:#00B8D966;border:1px solid #00B8D9"></i>Hành lang Cù Lao Chàm</div>
     <div><i class="sw" style="border-top:2px dashed #888;height:0"></i>Vòng 15 km (minh họa)</div>`;
 }
 

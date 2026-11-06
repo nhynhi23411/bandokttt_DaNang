@@ -116,7 +116,8 @@
       "order": 8,
       "default": true,
       "source": "S2",
-      "geometry": "mixed"
+      "geometry": "mixed",
+      "fillOpacity": 0.4
     }
   ],
   "subColors": {
