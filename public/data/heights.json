@@ -52,10 +52,10 @@
       "note": "Mốc địa danh tham chiếu."
     },
     {
-      "name": "Hành lang bay vượt biển – Cù Lao Chàm",
+      "name": "Hành lang vượt biển S1, S2 – Cù Lao Chàm",
       "color": "#00B8D9",
       "ceilingText": "Độ cao thể hiện trong hồ sơ kỹ thuật (Phụ lục 6); hồ sơ chưa có số liệu. Bay dưới 120 m so với địa hình do Quân khu 5 cấp phép",
-      "area": "hanh-lang"
+      "area": "hanh-lang-s1"
     },
     {
       "name": "Sân bay Đà Nẵng (điểm quy chiếu)",

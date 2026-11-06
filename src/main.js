@@ -44,6 +44,8 @@ const short = (p) => {
   if (p.id === 'bvlos-tong-the') return `Khu BVLOS · ${state.labels.bvlosArea}`;
   if (p.id === 'bvlos-tieu-khu-a') return 'Tiểu khu A';
   if (p.id === 'bvlos-tieu-khu-b') return 'Tiểu khu B';
+  if (p.id === 'hanh-lang-s1') return 'Hành lang S1 · khoảng 36 km';
+  if (p.id === 'hanh-lang-s2') return 'Hành lang S2 · khoảng 26 km';
   if (p.id === 'khu-huan-luyen-3-3ha') return 'Khu huấn luyện';
   if (p.id === 'khu-huan-luyen-kcnc') return 'Khu công nghệ cao (phạm vi theo Đề án)';
   

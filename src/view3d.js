@@ -79,7 +79,7 @@ export function open3D({ el, data, manifest, center, zoom, onPick }) {
     all('dia_danh').forEach((f) => label(f.geometry.coordinates, '▲ ' + f.properties.name + ' · ' + f.properties.elev_m + ' m', 'wide'));
     const st = all('son_tra').find((f) => f.properties.id === 'son-tra-3');
     if (st) label(st.geometry.coordinates, 'Vùng xanh Sơn Trà · độ cao khảo sát 500 m so với địa hình (không phải độ cao được phép)', 'wide up');
-    all('hanh_lang').forEach((f) => label(f.geometry.type === 'Polygon' ? turf.center(f).geometry.coordinates : f.geometry.coordinates, f.geometry.type === 'Polygon' ? (f.properties.id === 'vong-cu-lao-cham' ? 'Vùng bay quanh Cù Lao Chàm' : 'Hành lang Cù Lao Chàm') : f.properties.name, 'wide'));
+    all('hanh_lang').forEach((f) => label(f.geometry.type === 'Polygon' ? turf.center(f).geometry.coordinates : f.geometry.coordinates, f.geometry.type === 'Polygon' ? (f.properties.id === 'vong-cu-lao-cham' ? 'Vùng bay quanh Cù Lao Chàm' : f.properties.id === 'hanh-lang-s1' ? 'Hành lang S1 · khoảng 36 km' : 'Hành lang S2 · khoảng 26 km') : f.properties.name, 'wide'));
     if (dad) label(dad.geometry.coordinates, '★ Sân bay Đà Nẵng', '');
     all('son_tra').forEach((f) => label(f.geometry.coordinates, f.properties.id === 'son-tra-4' ? '' : f.properties.name, 'pt'));
 
