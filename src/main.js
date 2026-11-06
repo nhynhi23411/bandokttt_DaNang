@@ -44,7 +44,7 @@ const short = (p) => {
   if (p.id === 'bvlos-tong-the') return `Khu BVLOS · ${state.labels.bvlosArea}`;
   if (p.id === 'bvlos-tieu-khu-a') return 'Tiểu khu A';
   if (p.id === 'bvlos-tieu-khu-b') return 'Tiểu khu B';
-  if (p.id === 'khu-huan-luyen-3-3ha') return 'Khu huấn luyện (khoảng 3,3 ha)';
+  if (p.id === 'khu-huan-luyen-3-3ha') return 'Khu huấn luyện';
   if (p.id === 'khu-huan-luyen-kcnc') return 'Khu công nghệ cao (phạm vi theo Đề án)';
   
   if (p.layer === 'qd4167') return p.name.split(' – ')[0];
@@ -158,7 +158,7 @@ function showDetail(f) {
   let head = `<h3>${esc(p.name)}</h3>`;
   if (STATUS[p.status]) head += `<span class="badge s-${p.status}">${STATUS[p.status]}</span>`;
   const isPoly = g.type === 'Polygon';
-  if (isPoly) {
+  if (isPoly && p.id !== 'khu-huan-luyen-3-3ha') {
     const km2 = turf.area(f) / 1e6, per = turf.length(turf.polygonToLine(f), { units: 'kilometers' });
     add('Diện tích', `${fmt(km2, 2)} km² (${fmt(km2 * 100, 1)} ha)`);
     const pub = p.area_km2 ?? (p.area_ha ? p.area_ha / 100 : null);

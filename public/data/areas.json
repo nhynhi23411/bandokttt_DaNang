@@ -47,7 +47,7 @@
   },
   {
     "id": "kcnc",
-    "name": "Khu huấn luyện tại Khu công nghệ cao (khoảng 3,3 ha)",
+    "name": "Khu huấn luyện tại Khu công nghệ cao",
     "status": "Đề xuất",
     "features": [
       "khu-huan-luyen-3-3ha",
@@ -56,7 +56,7 @@
     "layers": [
       "kcnc"
     ],
-    "location": "Một khoảnh đất trống khoảng 3,3 ha nằm trong Khu công nghệ cao Đà Nẵng, liền phía Đông khu BVLOS; Khu công nghệ cao có phạm vi khoảng 193,5 ha theo Đề án (đường nét đứt trên bản đồ). Được địa hình núi che chắn: hoạt động bay giữ trong vòm núi, dưới độ cao đỉnh núi.",
+    "location": "Một khoảnh đất trống nằm trong Khu công nghệ cao Đà Nẵng, liền phía Đông khu BVLOS; Khu công nghệ cao có phạm vi khoảng 193,5 ha theo Đề án (đường nét đứt trên bản đồ). Được địa hình núi che chắn: hoạt động bay giữ trong vòm núi, dưới độ cao đỉnh núi.",
     "purpose": "Giai đoạn 1 (2026–2027): nghiên cứu phát triển, đào tạo, sát hạch người điều khiển và bay thử các nền tảng hiện có, gắn với Tổ hợp nghiên cứu và Trung tâm đào tạo, sát hạch đặt tại Khu công nghệ cao.",
     "limits": "Phải có giấy phép bay và nằm ngoài các bề mặt giới hạn chướng ngại vật của sân bay. Theo Công văn 7167/QLB-KL, khu vực không ảnh hưởng các phương thức bay dân dụng được đánh giá nhưng ảnh hưởng không vực quân sự, nên cần hiệp đồng với cơ quan quân sự.",
     "basis": "Đề án v20, Mục B.IV.1; Công văn số 7167/QLB-KL ngày 29/09/2026; Công văn số 4982/CHKQTĐN-KTCN ngày 14/10/2026."

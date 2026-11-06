@@ -199,9 +199,8 @@
    "id": "khu-huan-luyen-3-3ha",
    "properties": {
     "id": "khu-huan-luyen-3-3ha",
-    "name": "Khu huấn luyện (khoảng 3,3 ha)",
+    "name": "Khu huấn luyện",
     "layer": "kcnc",
-    "area_ha": 3.3,
     "status": "de_xuat",
     "source": "S2"
    },
