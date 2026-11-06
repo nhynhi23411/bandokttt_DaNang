@@ -180,7 +180,7 @@ function showDetail(f) {
     <h4>${isPoly || g.type === 'LineString' ? 'Đỉnh' : 'Tọa độ'} <small>(vĩ độ, kinh độ · WGS-84)</small></h4>
     <table class="vt"><thead><tr><th></th><th>Độ thập phân</th><th>Độ-phút-giây</th></tr></thead><tbody>${vrows}</tbody></table>
     <div class="btns"><button class="btn small" id="cp">Sao chép tọa độ</button><button class="btn small" id="ge">Mở trong Google Earth (KML)</button></div>
-    <p class="src">Nguồn: <a href="#" data-src="${p.source}">${p.source}</a> ${src ? '· ' + esc(src.agency) : ''}</p>
+    <p class="src"><a href="#" data-src="1">Mô tả khu vực và căn cứ của Đề án</a></p>
     <p class="hint">Tọa độ là đề xuất của Đề án, chưa phải ranh giới được phép bay.</p>`;
   $('#detail-body').innerHTML = html;
   $('#detail').hidden = false;
@@ -191,27 +191,47 @@ function showDetail(f) {
     setTimeout(() => ($('#cp').textContent = 'Sao chép tọa độ'), 1500);
   };
   $('#ge').onclick = () => download(`${p.id}.kml`, toKML([f], p.name), 'application/vnd.google-earth.kml+xml');
-  $('[data-src]', $('#detail-body')).onclick = (e) => { e.preventDefault(); openSources(p.source); };
+  $('[data-src]', $('#detail-body')).onclick = (e) => { e.preventDefault(); openAreas(areaOf(p.id)); };
   level('detail');
 }
 function clearHighlight() { if (state.hl) { map.removeLayer(state.hl); state.hl = null; } }
 $('#detail-close').onclick = () => { $('#detail').hidden = true; clearHighlight(); };
 
-// ---------- Sổ nguồn ----------
-function renderSources() {
-  const used = {};
-  for (const fc of Object.values(state.data)) for (const f of fc.features) (used[f.properties.source] ||= []).push(f.properties.name);
-  $('#sources-body').innerHTML = `<table class="st"><thead><tr><th>Mã</th><th>Nguồn</th><th>Ngày</th><th>Cơ quan</th><th>Trạng thái</th><th>Đối tượng dùng nguồn</th></tr></thead><tbody>${state.sources.map((s) =>
-    `<tr id="src-${s.id}"><td><b>${s.id}</b></td><td>${esc(s.title)}</td><td>${esc(s.date)}</td><td>${esc(s.agency)}</td><td>${esc(s.status)}</td><td>${(used[s.id] || []).map(esc).join('; ') || '<i>Chưa có đối tượng</i>'}<br><small>${esc(s.usedFor)}</small></td></tr>`).join('')}</tbody></table>`;
+// ---------- Mô tả các khu vực ----------
+function renderAreas() {
+  $('#sources-body').innerHTML = `<p class="areas-intro">Mô tả vị trí và mục đích của từng khu vực trên bản đồ, theo Đề án thí điểm phát triển kinh tế không gian tầm thấp (bản v20). Tọa độ và phạm vi là đề xuất của Đề án, chưa phải ranh giới được phép bay.</p>` +
+    state.areas.map((a) => `<article class="area" id="area-${a.id}">
+      <header><h3>${esc(a.name)}</h3>${a.status ? `<span class="badge">${esc(a.status)}</span>` : ''}<button class="btn small" data-goto="${a.id}">Xem trên bản đồ</button></header>
+      <dl><dt>Vị trí</dt><dd>${esc(a.location)}</dd><dt>Dùng để làm gì</dt><dd>${esc(a.purpose)}</dd><dt>Giới hạn và điều kiện</dt><dd>${esc(a.limits)}</dd><dt>Căn cứ</dt><dd>${esc(a.basis)}</dd></dl>
+    </article>`).join('');
+  $$('#sources-body [data-goto]').forEach((b) => (b.onclick = () => {
+    const a = state.areas.find((x) => x.id === b.dataset.goto);
+    $('#dlg-sources').close();
+    a.layers.forEach(ensureOn);
+    const bb = boundsOf2(a);
+    if (bb.isValid()) flyTo(bb, 14); else map.flyToBounds(CITY);
+    const f = a.features[0] && state.feats[a.features[0]]?.f;
+    if (f) showDetail(f);
+    level('area');
+    if (v3) $('#btn-3d').click();
+  }));
 }
-function openSources(id) {
+function boundsOf2(a) {
+  const b = L.latLngBounds([]);
+  a.features.forEach((id) => state.feats[id] && b.extend(L.geoJSON(state.feats[id].f).getBounds()));
+  if (a.id === 'bvlos') b.extend(boundsOf(['bvlos']));
+  if (a.id === 'san-bay') return L.circle([DAD.lat, DAD.lon], { radius: 15500 }).getBounds();
+  return b;
+}
+const areaOf = (fid) => state.areas.find((a) => a.features.includes(fid))?.id || (fid === 'bvlos-tong-the' ? 'bvlos' : null);
+function openAreas(id) {
   const d = $('#dlg-sources');
   if (!d.open) d.showModal();
-  $$('#sources-body tr').forEach((r) => r.classList.remove('flash'));
-  const row = id && $(`#src-${id}`);
-  if (row) { row.classList.add('flash'); row.scrollIntoView({ block: 'center' }); }
+  $$('#sources-body .area').forEach((r) => r.classList.remove('flash'));
+  const row = id && $(`#area-${id}`);
+  if (row) { row.classList.add('flash'); row.scrollIntoView({ block: 'start' }); } else $('#dlg-sources').scrollTop = 0;
 }
-$('#btn-sources').onclick = () => openSources();
+$('#btn-sources').onclick = () => openAreas();
 $('#dlg-sources [data-close]').onclick = () => $('#dlg-sources').close();
 $('#dlg-sources').addEventListener('click', (e) => { if (e.target.id === 'dlg-sources') e.target.close(); });
 
@@ -404,19 +424,25 @@ $$('#export-menu button').forEach((b) => (b.onclick = () => {
 }));
 const prep = () => { $('#print-date').textContent = `Ngày in: ${new Date().toLocaleDateString('vi-VN')}`; map.invalidateSize(); };
 window.addEventListener('beforeprint', prep);
-$('#btn-print').onclick = () => { prep(); setTimeout(() => window.print(), 300); };
+$('#btn-print').onclick = () => {
+  document.body.classList.add('printing');
+  prep();
+  setTimeout(() => map.invalidateSize(), 100);
+  setTimeout(() => window.print(), 2200);
+};
+window.addEventListener('afterprint', () => { document.body.classList.remove('printing'); map.invalidateSize(); });
 map.on('zoomend', syncVisibility);
 
 // ---------- Khởi động ----------
 (async () => {
-  const [manifest, sources, labels] = await Promise.all([json('/data/manifest.json'), json('/data/sources.json'), json('/data/labels.json')]);
-  Object.assign(state, { manifest, sources, labels });
+  const [manifest, sources, labels, areas] = await Promise.all([json('/data/manifest.json'), json('/data/sources.json'), json('/data/labels.json'), json('/data/areas.json')]);
+  Object.assign(state, { manifest, sources, labels, areas });
   $('#notice-text').textContent = `Lưu ý sử dụng: ${labels.notice}`;
   const fcs = await Promise.all(manifest.layers.map((l) => json(`/data/${l.file}`)));
   manifest.layers.forEach((l, i) => { state.data[l.id] = fcs[i]; });
   manifest.layers.forEach((l) => { state.groups[l.id] = buildLayer(l, state.data[l.id]); });
   buildSidebar();
-  renderSources();
+  renderAreas();
   syncVisibility();
   level('city');
   window.__map = map;

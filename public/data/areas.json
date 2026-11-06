@@ -1,0 +1,79 @@
+[
+  {
+    "id": "bvlos", "name": "Khu đề nghị thử nghiệm bay ngoài tầm nhìn (BVLOS) – xã Bà Nà", "status": "Đề xuất", "features": ["bvlos-tong-the"], "layers": ["bvlos", "bvlos_diem"],
+    "location": "Đa giác sáu điểm góc P1–P6 nằm giữa sườn Nam dãy Hải Vân và khối núi Bà Nà, phía Đông giáp vùng hồ Hòa Trung. Diện tích khoảng 69,70 km², chu vi khoảng 35,96 km. Ranh giới gần nhất cách điểm quy chiếu sân bay khoảng 15 km về phía Tây; khu du lịch Sun World Bà Nà Hills nằm ngoài ranh giới, về phía Nam.",
+    "purpose": "Kiểm chứng công nghệ phục vụ nhiệm vụ công của Đề án: phát hiện sớm cháy rừng, đánh giá thiệt hại thiên tai, vận chuyển hàng hóa vùng núi và thu thập dữ liệu cho bản sao số Thành phố.",
+    "limits": "Địa hình không đồng nhất (24–1.074 m) nên khu vực chia thành hai tiểu khu có giới hạn độ cao riêng. Mỗi đợt bay phải có kế hoạch bay được cấp phép.",
+    "basis": "Đề án v20, Mục B.IV; Báo cáo của Sở Khoa học và Công nghệ về kết quả Hội nghị ngày 02/11/2026 tại Sư đoàn Không quân 372 (dự thảo)."
+  },
+  {
+    "id": "tieu-khu-a", "name": "Tiểu khu A – thung lũng hồ Hòa Trung", "status": "Đề xuất", "features": ["bvlos-tieu-khu-a"], "layers": ["bvlos"],
+    "location": "Phần phía Đông của khu BVLOS, thung lũng hồ Hòa Trung, giới hạn bởi các điểm A1, P6, P1, A3, A2. Diện tích khoảng 8,26 km²; địa hình cao 24–239 m.",
+    "purpose": "Giai đoạn 1 (bước 1): nơi duy nhất được đề xuất tổ chức bay BVLOS ở bước đầu.",
+    "limits": "Không quá 200 m so với mặt đất và không quá 500 m so với mực nước biển; ban ngày, điều kiện khí tượng bay bằng mắt, theo kế hoạch bay được cấp phép từng đợt.",
+    "basis": "Đề án v20, Mục B.IV; Báo cáo của Sở Khoa học và Công nghệ (dự thảo)."
+  },
+  {
+    "id": "tieu-khu-b", "name": "Tiểu khu B – vùng núi phía Tây", "status": "Chờ ý kiến", "features": ["bvlos-tieu-khu-b"], "layers": ["bvlos"],
+    "location": "Phần phía Tây và trung tâm của khu BVLOS, giới hạn bởi các điểm P5, P4, P3, P2, P1, A3, A2, A1. Diện tích khoảng 61,44 km²; địa hình khoảng 90–1.074 m, phần lớn trên 300 m.",
+    "purpose": "Giai đoạn 2 (bước 2): mở rộng bay BVLOS sang vùng núi sau khi có ý kiến bằng văn bản của Công ty Quản lý bay miền Trung và Sư đoàn Không quân 372 về trần độ cao.",
+    "limits": "Không quá 200 m so với mặt đất; trần đề xuất 900 m so với mực nước biển, chờ ý kiến cơ quan quản lý bay. Chỉ bay trên địa hình không quá 700 m; các đỉnh cao hơn 700 m được thiết lập vùng cấm trong phần mềm điều khiển bay.",
+    "basis": "Đề án v20, Mục B.IV; Báo cáo của Sở Khoa học và Công nghệ (dự thảo)."
+  },
+  {
+    "id": "kcnc", "name": "Khu huấn luyện tại Khu công nghệ cao", "status": "Đề xuất", "features": ["khu-huan-luyen-kcnc"], "layers": ["kcnc"],
+    "location": "Bốn điểm K1–K4 trong Khu công nghệ cao Đà Nẵng, liền phía Đông khu BVLOS. Diện tích khoảng 193,5 ha. Được địa hình núi che chắn: hoạt động bay giữ trong vòm núi, dưới độ cao đỉnh núi.",
+    "purpose": "Giai đoạn 1 (2026–2027): nghiên cứu phát triển, đào tạo, sát hạch người điều khiển và bay thử các nền tảng hiện có, gắn với Tổ hợp nghiên cứu và Trung tâm đào tạo, sát hạch đặt tại Khu công nghệ cao.",
+    "limits": "Phải có giấy phép bay và nằm ngoài các bề mặt giới hạn chướng ngại vật của sân bay. Theo Công văn 7167/QLB-KL, khu vực không ảnh hưởng các phương thức bay dân dụng được đánh giá nhưng ảnh hưởng không vực quân sự, nên cần hiệp đồng với cơ quan quân sự.",
+    "basis": "Đề án v20, Mục B.IV.1; Công văn số 7167/QLB-KL ngày 29/09/2026; Công văn số 4982/CHKQTĐN-KTCN ngày 14/10/2026."
+  },
+  {
+    "id": "son-tra", "name": "Vùng xanh Sơn Trà (Công viên công nghệ phương tiện không người lái)", "status": "Đề xuất", "features": ["son-tra-1", "son-tra-2", "son-tra-3", "son-tra-4", "son-tra-5"], "layers": ["son_tra"],
+    "location": "Năm điểm khảo sát trên bán đảo Sơn Trà: Điểm 1 Bàn Cờ, Điểm 2 Thọ Quang, Điểm 3 InterContinental, Điểm 4 (sát Điểm 3), Điểm 5 cây đa di sản. Trục Tây – Đông dài khoảng 6.388 m, vùng đệm 100 m mỗi bên; cách sân bay tham khảo từ 8,9 km đến 16,6 km.",
+    "purpose": "Tạo không gian bay có kiểm soát, công khai và có giám sát cho người dân và doanh nghiệp; nơi trải nghiệm, trình diễn công nghệ và diễn tập cứu hộ, cứu nạn ở địa hình hiểm trở. Chia ba phân vùng: núi – rừng, sườn – chân núi, ven biển.",
+    "limits": "Tọa độ và chiều dài là thông số khảo sát đề xuất, chưa phải ranh giới được phép bay. Công văn 7167/QLB-KL cho biết hành lang ở độ cao khảo sát 500 m ảnh hưởng nhiều phương thức tiếp cận sân bay. Khi chưa có chấp thuận không phận, chỉ tổ chức hoạt động mặt đất, mô phỏng, trưng bày.",
+    "basis": "Đề án v20, Mục B.III.3; kết quả khảo sát thực địa của Công ty TNHH SkyOrder; Công văn số 7167/QLB-KL."
+  },
+  {
+    "id": "qd-1", "name": "Khu vực 1 – Dải ven biển bãi biển Mỹ Khê (QĐ 4167)", "status": "Đã thiết lập", "features": ["qd4167-khu-1"], "layers": ["qd4167"],
+    "location": "Dải ven biển dọc bãi biển Mỹ Khê, phía Đông sân bay Đà Nẵng, xác định bằng đa giác bốn điểm trong phụ lục Quyết định.",
+    "purpose": "Một trong bốn khu vực vùng trời Thành phố thiết lập cho hoạt động của tổ chức, hội, câu lạc bộ có sở hữu, sử dụng phương tiện bay.",
+    "limits": "Mọi hoạt động bay, kể cả bay thử nghiệm kinh tế không gian tầm thấp, phải có giấy phép của cơ quan có thẩm quyền. Hồ sơ chưa có trần độ cao của khu vực này.",
+    "basis": "Quyết định số 4167/QĐ-UBND ngày 16/09/2026; Công văn số 9749/UBND-KGVX ngày 26/09/2026."
+  },
+  {
+    "id": "qd-2", "name": "Khu vực 2 – Dải ven biển Ngũ Hành Sơn – Cửa Đại – An Bàng (QĐ 4167)", "status": "Đã thiết lập", "features": ["qd4167-khu-2"], "layers": ["qd4167"],
+    "location": "Dải ven biển từ Ngũ Hành Sơn về phía Nam qua Cửa Đại đến An Bàng, xác định bằng đa giác năm điểm.",
+    "purpose": "Khu vực vùng trời theo Quyết định 4167; Đề án xem xét đề xuất tổ chức Vùng xanh theo hồ sơ riêng tại hai khu vực trong Quyết định, không sớm hơn năm 2029.",
+    "limits": "Cần giấy phép bay. Công văn 7167/QLB-KL chỉ ra một số phương thức bay bị ảnh hưởng ở khu vực An Bàng; Cảng hàng không yêu cầu bổ sung đánh giá ảnh hưởng với khu chờ khu vực An Bàng, Hội An. Hồ sơ chưa có trần độ cao.",
+    "basis": "Quyết định số 4167/QĐ-UBND; Công văn số 7167/QLB-KL; Công văn số 4982/CHKQTĐN-KTCN."
+  },
+  {
+    "id": "qd-3", "name": "Khu vực 3 – Đô thị Tam Kỳ và vùng phụ cận (QĐ 4167)", "status": "Đã thiết lập", "features": ["qd4167-khu-3"], "layers": ["qd4167"],
+    "location": "Khu vực xung quanh đô thị Tam Kỳ, ở phía Nam của Thành phố, xác định bằng đa giác bốn điểm.",
+    "purpose": "Khu vực vùng trời theo Quyết định 4167 cho hoạt động của tổ chức, hội, câu lạc bộ có phương tiện bay.",
+    "limits": "Cần giấy phép bay. Hồ sơ chưa có trần độ cao.",
+    "basis": "Quyết định số 4167/QĐ-UBND; Công văn số 9749/UBND-KGVX."
+  },
+  {
+    "id": "qd-4", "name": "Khu vực 4 – Tiên Phước, đồi, đất trống, thưa dân cư (QĐ 4167)", "status": "Đã thiết lập", "features": ["qd4167-khu-4"], "layers": ["qd4167"],
+    "location": "Vùng đồi, đất trống, thưa dân cư tại Tiên Phước, ở phía Nam của Thành phố, xác định bằng đa giác bốn điểm nhỏ.",
+    "purpose": "Khu vực vùng trời theo Quyết định 4167 cho hoạt động của tổ chức, hội, câu lạc bộ có phương tiện bay.",
+    "limits": "Cần giấy phép bay; hồ sơ chưa có trần độ cao. Lưu ý: Đề án v20 ghi Tiên Phước không được coi là khu vực đã thiết lập theo Quyết định 4167; cần đối chiếu với phụ lục Quyết định trước khi công bố.",
+    "basis": "Quyết định số 4167/QĐ-UBND; Đề án v20."
+  },
+  {
+    "id": "san-bay", "name": "Sân bay Đà Nẵng và vòng 15 km (minh họa)", "status": "", "features": ["san-bay-dad", "dcc-17r-35l"], "layers": ["san_bay"],
+    "location": "Điểm quy chiếu Cảng hàng không quốc tế Đà Nẵng (VVDN) tại 16°02'38\"N 108°12'01\"E, cao độ khoảng 10–11 m; đường cất hạ cánh 17R/35L. Vòng bán kính 15 km vẽ quanh điểm quy chiếu.",
+    "purpose": "Làm mốc đối chiếu vị trí và khoảng cách giữa các khu vực của Đề án với sân bay.",
+    "limits": "Vòng 15 km chỉ để minh họa, không thay thế khu vực trách nhiệm TWR. Hồ sơ gửi cơ quan quản lý bay phải tính khoảng cách từ tọa độ đài DVOR/DME DAN theo Quyết định 2382/QĐ-CHK.",
+    "basis": "Tọa độ công khai của Cảng hàng không quốc tế Đà Nẵng; Quyết định số 2382/QĐ-CHK."
+  },
+  {
+    "id": "hoa-vang", "name": "Hòa Vang – khu mở rộng (chưa có tọa độ)", "status": "Đề xuất", "features": [], "layers": ["hoa_vang"],
+    "location": "Hai khu ở phía Tây Thành phố: sân bay cũ tại thôn Hòa Phú và khu trường bắn Đồng Xanh – Đồng Nghệ. Phạm vi đang được mở rộng; chưa có đa giác trên bản đồ, chờ tệp KML do Sở Khoa học và Công nghệ cung cấp.",
+    "purpose": "Giai đoạn 2 (2028–2030): khu thử nghiệm tích hợp cho UAV tải trọng lớn, phương tiện không người lái trên mặt nước và các hệ thống tự hành khác, gắn với khu tổ hợp và hệ sinh thái chuyên biệt.",
+    "limits": "Chưa có chấp thuận không phận và không thuộc bốn khu vực của Quyết định 4167. Chỉ sử dụng sau khi có ý kiến bằng văn bản của Bộ Tư lệnh Quân khu 5, Bộ Chỉ huy quân sự thành phố, đơn vị quản lý trường bắn, Cảng hàng không quốc tế Đà Nẵng và Công ty Quản lý bay miền Trung. Khu trường bắn là khu vực quân sự.",
+    "basis": "Đề án v20, Mục B.IV.1; Thông báo số 955/TB-VP."
+  }
+]
