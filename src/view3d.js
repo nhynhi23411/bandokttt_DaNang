@@ -45,6 +45,7 @@ export function open3D({ el, data, manifest, center, zoom, onPick }) {
     const dad = all('san_bay').find((f) => f.geometry.type === 'Point');
     add('ring', dad ? [turf.polygonToLine(turf.circle(dad.geometry.coordinates, 15, { units: 'kilometers', steps: 128 }))] : []);
     add('pts', [...all('bvlos_diem'), ...all('son_tra')]);
+    add('hl', all('hanh_lang').filter((f) => f.geometry.type === 'LineString'));
 
     const fill = (id, src, color, op) => map.addLayer({ id, type: 'fill', source: src, paint: { 'fill-color': color, 'fill-opacity': op } });
     const line = (id, src, color, w, dash) => map.addLayer({ id, type: 'line', source: src, paint: { 'line-color': color, 'line-width': w, ...(dash ? { 'line-dasharray': dash } : {}) } });
@@ -64,6 +65,7 @@ export function open3D({ el, data, manifest, center, zoom, onPick }) {
     line('tong-l', 'tong', '#D01E1E', 3);
     line('ring-l', 'ring', '#dddddd', 2, [3, 3]);
     line('rw', 'runway', '#111111', 4);
+    line('hl-l', 'hl', '#00B8D9', 4, [3, 2]);
     map.addLayer({ id: 'pts-c', type: 'circle', source: 'pts', paint: { 'circle-radius': ['case', ['==', ['get', 'layer'], 'son_tra'], 6, 4], 'circle-color': ['case', ['==', ['get', 'layer'], 'son_tra'], '#D02020', '#ffffff'], 'circle-stroke-color': '#000', 'circle-stroke-width': 1.5 } });
 
     // nhãn
@@ -75,6 +77,7 @@ export function open3D({ el, data, manifest, center, zoom, onPick }) {
     all('dia_danh').forEach((f) => label(f.geometry.coordinates, '▲ ' + f.properties.name + ' · ' + f.properties.elev_m + ' m', 'wide'));
     const st = all('son_tra').find((f) => f.properties.id === 'son-tra-3');
     if (st) label(st.geometry.coordinates, 'Vùng xanh Sơn Trà · độ cao khảo sát 500 m so với địa hình (không phải độ cao được phép)', 'wide up');
+    all('hanh_lang').forEach((f) => label(f.geometry.type === 'LineString' ? turf.center(f).geometry.coordinates : f.geometry.coordinates, f.geometry.type === 'LineString' ? 'Hành lang Cù Lao Chàm (minh họa)' : f.properties.name, 'wide'));
     if (dad) label(dad.geometry.coordinates, '★ Sân bay Đà Nẵng', '');
     all('son_tra').forEach((f) => label(f.geometry.coordinates, f.properties.id === 'son-tra-4' ? '' : f.properties.name, 'pt'));
 

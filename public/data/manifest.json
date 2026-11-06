@@ -106,6 +106,17 @@
       "default": true,
       "source": "Tham khảo",
       "geometry": "point"
+    },
+    {
+      "id": "hanh_lang",
+      "name": "Hành lang bay vượt biển – Cù Lao Chàm",
+      "group": "de_an",
+      "file": "hanh_lang.geojson",
+      "color": "#00B8D9",
+      "order": 8,
+      "default": true,
+      "source": "S2",
+      "geometry": "mixed"
     }
   ],
   "subColors": {

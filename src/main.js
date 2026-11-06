@@ -112,6 +112,9 @@ function buildLayer(m, fc) {
         lyr.getTooltip().options.offset = [12, 0];
         g.addLayer(L.circle([y, x], { radius: 15000, color: '#888', weight: 2, dashArray: '8 8', fill: false, interactive: false, pane: 'p-air' })
           .bindTooltip('Vòng 15 km (minh họa)', { permanent: true, direction: 'top', className: 'lbl ring', opacity: 1 }));
+      } else if (m.id === 'hanh_lang') {
+        lyr = L.circleMarker([y, x], { pane: 'p-pts', radius: 7, color: '#fff', weight: 2, fillColor: '#00B8D9', fillOpacity: 1, bubblingMouseEvents: false });
+        lyr.bindTooltip(tip(p.name, '', 'right'), { permanent: true });
       } else if (m.id === 'dia_danh') {
         lyr = L.marker([y, x], { pane: 'p-pts', icon: L.divIcon({ className: 'peak', html: '▲', iconSize: [22, 22], iconAnchor: [11, 16] }) });
         lyr.bindTooltip(tip(p.name, '', 'right'), { permanent: true });
@@ -126,7 +129,8 @@ function buildLayer(m, fc) {
         lyr.bindTooltip(tip(p.name, 'bold min12', 'top'), { permanent: true });
       }
     } else if (f.geometry.type === 'LineString') {
-      lyr = L.polyline(f.geometry.coordinates.map(([x, y]) => [y, x]), { pane: 'p-air', color: '#111', weight: 6, bubblingMouseEvents: false });
+      lyr = L.polyline(f.geometry.coordinates.map(([x, y]) => [y, x]), m.id === 'hanh_lang' ? { pane: 'p-air', color: '#00B8D9', weight: 5, dashArray: '12 8', bubblingMouseEvents: false } : { pane: 'p-air', color: '#111', weight: 6, bubblingMouseEvents: false });
+      if (m.id === 'hanh_lang') lyr.bindTooltip(tip('Hành lang bay vượt biển hướng Cù Lao Chàm (minh họa)', '', 'center'), { permanent: true });
     }
     if (lyr) {
       onFeature(f, lyr);
@@ -180,7 +184,7 @@ function showDetail(f) {
   if (p.id.startsWith('son-tra')) add('Cự ly tham khảo đến sân bay', 'từ 8,9 km đến 16,6 km (biên bản khảo sát)');
   if (p.note) add('Ghi chú', esc(p.note));
   const vs = vertexNames(f);
-  const lineNames = p.id === 'dcc-17r-35l' ? ['Đầu 35L', 'Đầu 17R'] : null;
+  const lineNames = p.id === 'dcc-17r-35l' ? ['Đầu 35L', 'Đầu 17R'] : p.id === 'hanh-lang-cu-lao-cham' ? ['Điểm xuất phát (ven biển Sơn Trà)', 'Điểm đích (Cù Lao Chàm)'] : null;
   if (lineNames) vs.length = 0, g.coordinates.forEach((c, i) => vs.push({ name: lineNames[i], lon: c[0], lat: c[1] }));
   const vrows = vs.map((v) => `<tr><td>${esc(v.name)}</td><td>${dec(v.lat)}<br>${dec(v.lon)}</td><td>${dms(v.lat, true)}<br>${dms(v.lon, false)}</td></tr>`).join('');
   const src = state.sources.find((s) => s.id === p.source);
@@ -411,6 +415,7 @@ function buildSidebar() {
     <div><i class="dot" style="background:#D02020"></i>Vùng xanh Sơn Trà (đệm 100 m)</div>
     <div><i class="sw" style="font-style:normal;text-align:center;line-height:10px">★</i>Sân bay Đà Nẵng</div>
     <div><i class="sw" style="color:#F2B705;text-align:center;line-height:10px">▲</i>Bà Nà Hills</div>
+    <div><i class="sw" style="border-top:3px dashed #00B8D9;height:0"></i>Hành lang Cù Lao Chàm</div>
     <div><i class="sw" style="border-top:2px dashed #888;height:0"></i>Vòng 15 km (minh họa)</div>`;
 }
 
