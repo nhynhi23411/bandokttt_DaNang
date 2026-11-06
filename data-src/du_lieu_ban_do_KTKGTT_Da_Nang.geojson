@@ -1,0 +1,645 @@
+{
+ "type": "FeatureCollection",
+ "name": "ktkgtt_da_nang",
+ "features": [
+  {
+   "type": "Feature",
+   "id": "bvlos-tong-the",
+   "properties": {
+    "id": "bvlos-tong-the",
+    "name": "Khu vực đề nghị thử nghiệm bay BVLOS (P1–P6)",
+    "layer": "bvlos",
+    "area_km2": 69.7,
+    "status": "de_xuat",
+    "source": "S1"
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       108.063175,
+       16.087017
+      ],
+      [
+       108.038825,
+       16.107144
+      ],
+      [
+       107.93225,
+       16.08595
+      ],
+      [
+       107.943861,
+       16.032189
+      ],
+      [
+       108.018306,
+       16.052236
+      ],
+      [
+       108.063289,
+       16.078844
+      ],
+      [
+       108.063175,
+       16.087017
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "bvlos-tieu-khu-a",
+   "properties": {
+    "id": "bvlos-tieu-khu-a",
+    "name": "Tiểu khu A – thung lũng hồ Hòa Trung",
+    "layer": "bvlos",
+    "area_km2": 8.26,
+    "agl_max_m": 200,
+    "amsl_max_m": 500,
+    "phase": 1,
+    "terrain_m": "24–239",
+    "status": "de_xuat",
+    "source": "S1"
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       108.032,
+       16.060336
+      ],
+      [
+       108.063289,
+       16.078844
+      ],
+      [
+       108.063175,
+       16.087017
+      ],
+      [
+       108.055936,
+       16.093
+      ],
+      [
+       108.032,
+       16.092
+      ],
+      [
+       108.032,
+       16.060336
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "bvlos-tieu-khu-b",
+   "properties": {
+    "id": "bvlos-tieu-khu-b",
+    "name": "Tiểu khu B – vùng núi phía Tây",
+    "layer": "bvlos",
+    "area_km2": 61.44,
+    "agl_max_m": 200,
+    "amsl_max_m": 900,
+    "phase": 2,
+    "terrain_m": "≈90–1.074",
+    "status": "de_xuat_cho_y_kien",
+    "source": "S1"
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       108.018306,
+       16.052236
+      ],
+      [
+       107.943861,
+       16.032189
+      ],
+      [
+       107.93225,
+       16.08595
+      ],
+      [
+       108.038825,
+       16.107144
+      ],
+      [
+       108.063175,
+       16.087017
+      ],
+      [
+       108.055936,
+       16.093
+      ],
+      [
+       108.032,
+       16.092
+      ],
+      [
+       108.032,
+       16.060336
+      ],
+      [
+       108.018306,
+       16.052236
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "khu-huan-luyen-kcnc",
+   "properties": {
+    "id": "khu-huan-luyen-kcnc",
+    "name": "Khu huấn luyện – Khu công nghệ cao",
+    "layer": "kcnc",
+    "area_ha": 193.5,
+    "status": "de_xuat",
+    "source": "S2"
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       108.070556,
+       16.094167
+      ],
+      [
+       108.0725,
+       16.076389
+      ],
+      [
+       108.081111,
+       16.077778
+      ],
+      [
+       108.08,
+       16.095556
+      ],
+      [
+       108.070556,
+       16.094167
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "qd4167-khu-1",
+   "properties": {
+    "id": "qd4167-khu-1",
+    "name": "Khu vực 1 – Dải ven biển bãi biển Mỹ Khê",
+    "layer": "qd4167",
+    "status": "da_thiet_lap",
+    "source": "S3"
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       108.239444,
+       16.098889
+      ],
+      [
+       108.264444,
+       16.086944
+      ],
+      [
+       108.263611,
+       16.048333
+      ],
+      [
+       108.246667,
+       16.046389
+      ],
+      [
+       108.239444,
+       16.098889
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "qd4167-khu-2",
+   "properties": {
+    "id": "qd4167-khu-2",
+    "name": "Khu vực 2 – Dải ven biển Ngũ Hành Sơn – Cửa Đại – An Bàng",
+    "layer": "qd4167",
+    "status": "da_thiet_lap",
+    "source": "S3"
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       108.250278,
+       16.013889
+      ],
+      [
+       108.273333,
+       16.024167
+      ],
+      [
+       108.400556,
+       15.889722
+      ],
+      [
+       108.330833,
+       15.840833
+      ],
+      [
+       108.258056,
+       15.960278
+      ],
+      [
+       108.250278,
+       16.013889
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "qd4167-khu-3",
+   "properties": {
+    "id": "qd4167-khu-3",
+    "name": "Khu vực 3 – Đô thị Tam Kỳ và vùng phụ cận",
+    "layer": "qd4167",
+    "status": "da_thiet_lap",
+    "source": "S3"
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       108.457222,
+       15.575833
+      ],
+      [
+       108.470556,
+       15.590556
+      ],
+      [
+       108.527222,
+       15.558056
+      ],
+      [
+       108.512222,
+       15.525278
+      ],
+      [
+       108.457222,
+       15.575833
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "qd4167-khu-4",
+   "properties": {
+    "id": "qd4167-khu-4",
+    "name": "Khu vực 4 – Tiên Phước – đồi, đất trống, thưa dân cư",
+    "layer": "qd4167",
+    "status": "da_thiet_lap",
+    "source": "S3"
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       108.358056,
+       15.534722
+      ],
+      [
+       108.366667,
+       15.538889
+      ],
+      [
+       108.3675,
+       15.533889
+      ],
+      [
+       108.357778,
+       15.531111
+      ],
+      [
+       108.358056,
+       15.534722
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "diem-p1",
+   "properties": {
+    "id": "diem-p1",
+    "name": "P1",
+    "layer": "bvlos_diem",
+    "source": "S1"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     108.063175,
+     16.087017
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "diem-p2",
+   "properties": {
+    "id": "diem-p2",
+    "name": "P2",
+    "layer": "bvlos_diem",
+    "source": "S1"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     108.038825,
+     16.107144
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "diem-p3",
+   "properties": {
+    "id": "diem-p3",
+    "name": "P3",
+    "layer": "bvlos_diem",
+    "source": "S1"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     107.93225,
+     16.08595
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "diem-p4",
+   "properties": {
+    "id": "diem-p4",
+    "name": "P4",
+    "layer": "bvlos_diem",
+    "source": "S1"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     107.943861,
+     16.032189
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "diem-p5",
+   "properties": {
+    "id": "diem-p5",
+    "name": "P5",
+    "layer": "bvlos_diem",
+    "source": "S1"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     108.018306,
+     16.052236
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "diem-p6",
+   "properties": {
+    "id": "diem-p6",
+    "name": "P6",
+    "layer": "bvlos_diem",
+    "source": "S1"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     108.063289,
+     16.078844
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "diem-a1",
+   "properties": {
+    "id": "diem-a1",
+    "name": "A1",
+    "layer": "bvlos_diem",
+    "source": "S1"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     108.032,
+     16.060336
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "diem-a2",
+   "properties": {
+    "id": "diem-a2",
+    "name": "A2",
+    "layer": "bvlos_diem",
+    "source": "S1"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     108.032,
+     16.092
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "diem-a3",
+   "properties": {
+    "id": "diem-a3",
+    "name": "A3",
+    "layer": "bvlos_diem",
+    "source": "S1"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     108.055936,
+     16.093
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "son-tra-1",
+   "properties": {
+    "id": "son-tra-1",
+    "name": "Điểm 1 – Bàn Cờ",
+    "layer": "son_tra",
+    "status": "khao_sat_de_xuat",
+    "buffer_m": 100,
+    "source": "S2"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     108.271944,
+     16.119444
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "son-tra-2",
+   "properties": {
+    "id": "son-tra-2",
+    "name": "Điểm 2 – Thọ Quang",
+    "layer": "son_tra",
+    "status": "khao_sat_de_xuat",
+    "buffer_m": 100,
+    "source": "S2"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     108.257778,
+     16.101667
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "son-tra-3",
+   "properties": {
+    "id": "son-tra-3",
+    "name": "Điểm 3 – InterContinental",
+    "layer": "son_tra",
+    "status": "khao_sat_de_xuat",
+    "buffer_m": 100,
+    "source": "S2"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     108.309444,
+     16.112778
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "son-tra-4",
+   "properties": {
+    "id": "son-tra-4",
+    "name": "Điểm 4 (sát Điểm 3)",
+    "layer": "son_tra",
+    "status": "khao_sat_de_xuat",
+    "buffer_m": 100,
+    "source": "S2"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     108.309444,
+     16.1125
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "son-tra-5",
+   "properties": {
+    "id": "son-tra-5",
+    "name": "Điểm 5 – cây đa di sản",
+    "layer": "son_tra",
+    "status": "khao_sat_de_xuat",
+    "buffer_m": 100,
+    "source": "S2"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     108.331667,
+     16.1225
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "san-bay-dad",
+   "properties": {
+    "id": "san-bay-dad",
+    "name": "Cảng hàng không quốc tế Đà Nẵng (điểm quy chiếu)",
+    "layer": "san_bay",
+    "icao": "VVDN",
+    "iata": "DAD",
+    "elev_m": "10–11",
+    "source": "S4"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     108.200278,
+     16.043889
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "dcc-17r-35l",
+   "properties": {
+    "id": "dcc-17r-35l",
+    "name": "Đường cất hạ cánh 17R/35L",
+    "layer": "san_bay",
+    "source": "S4"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      108.200392,
+      16.030125
+     ],
+     [
+      108.196433,
+      16.057408
+     ]
+    ]
+   }
+  }
+ ]
+}

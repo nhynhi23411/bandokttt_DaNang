@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bản đồ kinh tế không gian tầm thấp – Thành phố Đà Nẵng</title>
+  <meta name="description" content="Bản đồ tương tác phân vùng Đề án thí điểm phát triển kinh tế không gian tầm thấp trên địa bàn Thành phố Đà Nẵng đến năm 2030." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='14' fill='%231b4f9c'/><path d='M8 18l8-9 8 9h-5v5h-6v-5z' fill='white'/></svg>" />
+</head>
+<body>
+  <header id="topbar">
+    <button id="btn-menu" class="icon-btn" aria-label="Mở hoặc thu gọn cột trái">☰</button>
+    <div class="title"><strong>Bản đồ kinh tế không gian tầm thấp</strong><span>Thành phố Đà Nẵng · Đề án đến năm 2030</span></div>
+    <div class="spacer"></div>
+    <button id="btn-sources" class="btn">Sổ nguồn</button>
+    <div class="menu-wrap">
+      <button id="btn-export" class="btn">Xuất dữ liệu ▾</button>
+      <div id="export-menu" class="menu" hidden>
+        <button data-exp="geojson-all">Toàn bộ – GeoJSON</button>
+        <button data-exp="kml-all">Toàn bộ – KML</button>
+        <button data-exp="geojson-sel">Lớp đang bật – GeoJSON</button>
+        <button data-exp="kml-sel">Lớp đang bật – KML</button>
+      </div>
+    </div>
+    <button id="btn-print" class="btn">In A4</button>
+    <button id="btn-theme" class="icon-btn" aria-label="Chuyển sáng hoặc tối">◐</button>
+  </header>
+
+  <div id="layout">
+    <aside id="sidebar">
+      <section>
+        <h2>Cấp xem</h2>
+        <div id="levels" class="seg">
+          <button data-level="city" class="on">Toàn Thành phố</button>
+          <button data-level="area">Khu vực</button>
+          <button data-level="detail">Chi tiết</button>
+        </div>
+      </section>
+      <section>
+        <h2>Tìm tọa độ</h2>
+        <form id="search-form"><input id="search" placeholder="16,0439 108,2003 hoặc 16°02'38&quot;N 108°12'01&quot;E" aria-label="Tọa độ" /><button class="btn small">Đến</button></form>
+        <p id="search-msg" class="hint"></p>
+      </section>
+      <section>
+        <h2>Đi tới</h2>
+        <div id="goto" class="chips"></div>
+      </section>
+      <section id="layers-sec">
+        <h2>Lớp bản đồ</h2>
+        <div id="layers"></div>
+        <label class="slider">Độ trong suốt lớp đa giác <input id="opacity" type="range" min="0.1" max="1" step="0.05" value="1" /></label>
+      </section>
+      <section>
+        <h2>Công cụ</h2>
+        <div class="tools">
+          <button class="btn tool" data-tool="check">Kiểm tra vị trí</button>
+          <button class="btn tool" data-tool="draw">Vẽ và đo diện tích</button>
+          <button class="btn tool" data-tool="measure">Đo khoảng cách</button>
+        </div>
+        <div id="tool-out" class="tool-out" hidden></div>
+      </section>
+    </aside>
+
+    <main id="mapwrap">
+      <div id="map"></div>
+      <div id="basemaps" class="seg floating">
+        <button data-base="sat" class="on">Vệ tinh</button>
+        <button data-base="topo">Địa hình</button>
+        <button data-base="road">Đường</button>
+      </div>
+      <div id="legend" class="legend"></div>
+      <aside id="detail" hidden>
+        <button id="detail-close" class="icon-btn" aria-label="Đóng">✕</button>
+        <div id="detail-body"></div>
+      </aside>
+    </main>
+  </div>
+
+  <footer id="notice"><span id="notice-text"></span></footer>
+
+  <dialog id="dlg-sources"><div class="dlg-head"><h2>Sổ nguồn</h2><button class="icon-btn" data-close>✕</button></div><div id="sources-body"></div></dialog>
+
+  <div id="print-head"><h1>Bản đồ kinh tế không gian tầm thấp – Thành phố Đà Nẵng</h1><p id="print-date"></p></div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
