@@ -81,36 +81,6 @@
     "basis": "Đề án v20, Mục B.III.3; kết quả khảo sát thực địa của Công ty TNHH SkyOrder; Công văn số 7167/QLB-KL."
   },
   {
-    "id": "qd-1",
-    "name": "Khu vực 1 – Dải ven biển bãi biển Mỹ Khê (QĐ 4167)",
-    "status": "Đã thiết lập",
-    "features": [
-      "qd4167-khu-1"
-    ],
-    "layers": [
-      "qd4167"
-    ],
-    "location": "Dải ven biển dọc bãi biển Mỹ Khê, phía Đông sân bay Đà Nẵng, xác định bằng đa giác bốn điểm trong phụ lục Quyết định.",
-    "purpose": "Một trong bốn khu vực vùng trời Thành phố thiết lập cho hoạt động của tổ chức, hội, câu lạc bộ có sở hữu, sử dụng phương tiện bay.",
-    "limits": "Mọi hoạt động bay, kể cả bay thử nghiệm kinh tế không gian tầm thấp, phải có giấy phép của cơ quan có thẩm quyền. Hồ sơ chưa có trần độ cao của khu vực này.",
-    "basis": "Quyết định số 4167/QĐ-UBND ngày 16/09/2026; Công văn số 9749/UBND-KGVX ngày 26/09/2026."
-  },
-  {
-    "id": "qd-2",
-    "name": "Khu vực 2 – Dải ven biển Ngũ Hành Sơn – Cửa Đại – An Bàng (QĐ 4167)",
-    "status": "Đã thiết lập",
-    "features": [
-      "qd4167-khu-2"
-    ],
-    "layers": [
-      "qd4167"
-    ],
-    "location": "Dải ven biển từ Ngũ Hành Sơn về phía Nam qua Cửa Đại đến An Bàng, xác định bằng đa giác năm điểm.",
-    "purpose": "Khu vực vùng trời theo Quyết định 4167; Đề án xem xét đề xuất tổ chức Vùng xanh theo hồ sơ riêng tại hai khu vực trong Quyết định, không sớm hơn năm 2029.",
-    "limits": "Cần giấy phép bay. Công văn 7167/QLB-KL chỉ ra một số phương thức bay bị ảnh hưởng ở khu vực An Bàng; Cảng hàng không yêu cầu bổ sung đánh giá ảnh hưởng với khu chờ khu vực An Bàng, Hội An. Hồ sơ chưa có trần độ cao.",
-    "basis": "Quyết định số 4167/QĐ-UBND; Công văn số 7167/QLB-KL; Công văn số 4982/CHKQTĐN-KTCN."
-  },
-  {
     "id": "qd-3",
     "name": "Khu vực 3 – Đô thị Tam Kỳ và vùng phụ cận (QĐ 4167)",
     "status": "Đã thiết lập",

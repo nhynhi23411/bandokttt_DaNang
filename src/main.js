@@ -413,7 +413,7 @@ function buildSidebar() {
     <div><i class="sw" style="background:#2E9A3C99"></i>Tiểu khu A</div>
     <div><i class="sw" style="background:#E0781499"></i>Tiểu khu B</div>
     <div><i class="sw" style="background:#8A3CA099"></i>Khu huấn luyện – Khu CNC</div>
-    <div><i class="sw" style="background:#2A6FD066"></i>4 khu vực QĐ 4167</div>
+    <div><i class="sw" style="background:#2A6FD066"></i>Khu vực QĐ 4167</div>
     <div><i class="dot" style="background:#D02020"></i>Vùng xanh Sơn Trà (đệm 100 m)</div>
     <div><i class="sw" style="font-style:normal;text-align:center;line-height:10px">★</i>Sân bay Đà Nẵng</div>
     <div><i class="sw" style="color:#F2B705;text-align:center;line-height:10px">▲</i>Bà Nà Hills</div>

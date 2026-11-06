@@ -68,10 +68,10 @@
       "area": "san-bay"
     },
     {
-      "name": "Bốn khu vực vùng trời – QĐ 4167",
+      "name": "Các khu vực vùng trời – QĐ 4167",
       "color": "#2A6FD0",
-      "ceilingText": "Hồ sơ chưa có trần độ cao của bốn khu vực",
-      "area": "qd-1"
+      "ceilingText": "Hồ sơ chưa có trần độ cao của các khu vực",
+      "area": "qd-3"
     }
   ]
 }
