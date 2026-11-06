@@ -70,8 +70,8 @@
     "basis": "Tọa độ công khai của Cảng hàng không quốc tế Đà Nẵng; Quyết định số 2382/QĐ-CHK."
   },
   {
-    "id": "hoa-vang", "name": "Hòa Vang – khu mở rộng (chưa có tọa độ)", "status": "Đề xuất", "features": [], "layers": ["hoa_vang"],
-    "location": "Hai khu ở phía Tây Thành phố: sân bay cũ tại thôn Hòa Phú và khu trường bắn Đồng Xanh – Đồng Nghệ. Phạm vi đang được mở rộng; chưa có đa giác trên bản đồ, chờ tệp KML do Sở Khoa học và Công nghệ cung cấp.",
+    "id": "hoa-vang", "name": "Hòa Vang – khu mở rộng (vẽ gần đúng, chờ KML)", "status": "Đề xuất", "features": [], "layers": ["hoa_vang"],
+    "location": "Hai khu ở phía Tây Thành phố: sân bay cũ tại thôn Hòa Phú và khu trường bắn Đồng Xanh – Đồng Nghệ. Đa giác trên bản đồ tạm thời vẽ gần đúng theo ảnh chụp Google Earth (vùng GĐ2-HV VALEY, khoảng 70 km²), chưa phải tọa độ chính thức; sẽ thay bằng tệp KML do Sở Khoa học và Công nghệ cung cấp.",
     "purpose": "Giai đoạn 2 (2028–2030): khu thử nghiệm tích hợp cho UAV tải trọng lớn, phương tiện không người lái trên mặt nước và các hệ thống tự hành khác, gắn với khu tổ hợp và hệ sinh thái chuyên biệt.",
     "limits": "Chưa có chấp thuận không phận và không thuộc bốn khu vực của Quyết định 4167. Chỉ sử dụng sau khi có ý kiến bằng văn bản của Bộ Tư lệnh Quân khu 5, Bộ Chỉ huy quân sự thành phố, đơn vị quản lý trường bắn, Cảng hàng không quốc tế Đà Nẵng và Công ty Quản lý bay miền Trung. Khu trường bắn là khu vực quân sự.",
     "basis": "Đề án v20, Mục B.IV.1; Thông báo số 955/TB-VP."
