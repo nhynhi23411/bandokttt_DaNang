@@ -128,3 +128,4 @@ body.printing .legend{display:block}
 @media (max-width:800px){.area dl{grid-template-columns:1fr}.area dt{margin-top:6px}}
 body.printing .legend{background:#fff;color:#000}
 @media print{.legend{background:#fff!important;color:#000!important}}
+.peak{font-size:20px;line-height:22px;text-align:center;color:#F2B705;text-shadow:0 0 3px #000,0 0 3px #000}

@@ -109,6 +109,10 @@ function buildLayer(m, fc) {
         lyr.getTooltip().options.offset = [12, 0];
         g.addLayer(L.circle([y, x], { radius: 15000, color: '#888', weight: 2, dashArray: '8 8', fill: false, interactive: false, pane: 'p-air' })
           .bindTooltip('Vòng 15 km (minh họa)', { permanent: true, direction: 'top', className: 'lbl ring', opacity: 1 }));
+      } else if (m.id === 'dia_danh') {
+        lyr = L.marker([y, x], { pane: 'p-pts', icon: L.divIcon({ className: 'peak', html: '▲', iconSize: [22, 22], iconAnchor: [11, 16] }) });
+        lyr.bindTooltip(tip(p.name, '', 'right'), { permanent: true });
+        lyr.getTooltip().options.offset = [10, -4];
       } else if (m.id === 'son_tra') {
         lyr = L.circleMarker([y, x], { pane: 'p-pts', radius: 7, color: '#fff', weight: 2, fillColor: m.color, fillOpacity: 1, bubblingMouseEvents: false });
         g.addLayer(L.circle([y, x], { radius: p.buffer_m || 100, color: m.color, weight: 1, fillOpacity: 0.15, interactive: false, pane: 'p-pts', className: 'buf min14' }));
@@ -167,6 +171,7 @@ function showDetail(f) {
   if (p.id === 'bvlos-tieu-khu-a') add('Điều kiện', 'Ban ngày, khí tượng bay bằng mắt, kế hoạch bay cấp phép từng đợt');
   if (p.layer === 'qd4167') add('Độ cao', 'Chưa có trần độ cao trong hồ sơ');
   if (p.buffer_m) add('Vùng đệm', `${p.buffer_m} m mỗi bên`);
+  if (p.elev_m && !p.icao) add('Độ cao', `${p.elev_m} m so với mực nước biển`);
   if (p.icao) add('Mã sân bay', `${p.icao} / ${p.iata}`), add('Cao độ', `${p.elev_m} m`);
   if (p.id === 'bvlos-tong-the') add('Xã', state.labels.bvlosArea);
   if (p.id.startsWith('son-tra')) add('Cự ly tham khảo đến sân bay', 'từ 8,9 km đến 16,6 km (biên bản khảo sát)');
@@ -400,6 +405,7 @@ function buildSidebar() {
     <div><i class="sw" style="background:#2A6FD066"></i>4 khu vực QĐ 4167</div>
     <div><i class="dot" style="background:#D02020"></i>Vùng xanh Sơn Trà (đệm 100 m)</div>
     <div><i class="sw" style="font-style:normal;text-align:center;line-height:10px">★</i>Sân bay Đà Nẵng</div>
+    <div><i class="sw" style="color:#F2B705;text-align:center;line-height:10px">▲</i>Bà Nà Hills</div>
     <div><i class="sw" style="border-top:2px dashed #888;height:0"></i>Vòng 15 km (minh họa)</div>`;
 }
 

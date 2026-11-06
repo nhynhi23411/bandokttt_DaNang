@@ -71,6 +71,7 @@ export function open3D({ el, data, manifest, center, zoom, onPick }) {
     all('bvlos_diem').forEach((f) => label(f.geometry.coordinates, f.properties.name, 'pt'));
     all('qd4167').forEach((f) => label(turf.centroid(f).geometry.coordinates, f.properties.name.split(' – ')[0], ''));
     all('kcnc').forEach((f) => label(turf.centroid(f).geometry.coordinates, 'Khu huấn luyện', ''));
+    all('dia_danh').forEach((f) => label(f.geometry.coordinates, '▲ ' + f.properties.name, 'wide'));
     if (dad) label(dad.geometry.coordinates, '★ Sân bay Đà Nẵng', '');
     all('son_tra').forEach((f) => label(f.geometry.coordinates, f.properties.id === 'son-tra-4' ? '' : f.properties.name, 'pt'));
 

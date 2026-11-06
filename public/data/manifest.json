@@ -1,17 +1,115 @@
 {
   "groups": [
-    { "id": "nen", "name": "Nền" },
-    { "id": "vung_troi", "name": "Vùng trời và không phận" },
-    { "id": "de_an", "name": "Đề án" }
+    {
+      "id": "nen",
+      "name": "Nền"
+    },
+    {
+      "id": "vung_troi",
+      "name": "Vùng trời và không phận"
+    },
+    {
+      "id": "de_an",
+      "name": "Đề án"
+    }
   ],
   "layers": [
-    { "id": "qd4167", "name": "4 khu vực vùng trời – QĐ 4167", "group": "vung_troi", "file": "qd4167.geojson", "color": "#2A6FD0", "fillOpacity": 0.25, "order": 1, "default": true, "source": "S3", "geometry": "polygon" },
-    { "id": "san_bay", "name": "Sân bay Đà Nẵng, đường cất hạ cánh, vòng 15 km (minh họa)", "group": "vung_troi", "file": "san_bay.geojson", "color": "#222222", "order": 6, "default": true, "source": "S4", "geometry": "mixed" },
-    { "id": "bvlos", "name": "Khu BVLOS (P1–P6), Tiểu khu A và B", "group": "de_an", "file": "bvlos.geojson", "color": "#D01E1E", "fillOpacity": 0.4, "order": 3, "default": true, "source": "S1", "geometry": "polygon" },
-    { "id": "bvlos_diem", "name": "Điểm góc P1–P6, A1–A3", "group": "de_an", "file": "bvlos_diem.geojson", "color": "#111111", "order": 7, "default": true, "source": "S1", "geometry": "point", "minZoom": 12 },
-    { "id": "kcnc", "name": "Khu huấn luyện – Khu công nghệ cao", "group": "de_an", "file": "kcnc.geojson", "color": "#8A3CA0", "fillOpacity": 0.5, "order": 5, "default": true, "source": "S2", "geometry": "polygon" },
-    { "id": "son_tra", "name": "Vùng xanh Sơn Trà (5 điểm)", "group": "de_an", "file": "son_tra.geojson", "color": "#D02020", "order": 7, "default": true, "source": "S2", "geometry": "point" },
-    { "id": "hoa_vang", "name": "Hòa Vang (mở rộng)", "group": "de_an", "file": "hoa_vang.geojson", "color": "#0E9F9F", "fillOpacity": 0.4, "order": 4, "default": true, "source": "S5", "geometry": "polygon" }
+    {
+      "id": "qd4167",
+      "name": "4 khu vực vùng trời – QĐ 4167",
+      "group": "vung_troi",
+      "file": "qd4167.geojson",
+      "color": "#2A6FD0",
+      "fillOpacity": 0.25,
+      "order": 1,
+      "default": true,
+      "source": "S3",
+      "geometry": "polygon"
+    },
+    {
+      "id": "san_bay",
+      "name": "Sân bay Đà Nẵng, đường cất hạ cánh, vòng 15 km (minh họa)",
+      "group": "vung_troi",
+      "file": "san_bay.geojson",
+      "color": "#222222",
+      "order": 6,
+      "default": true,
+      "source": "S4",
+      "geometry": "mixed"
+    },
+    {
+      "id": "bvlos",
+      "name": "Khu BVLOS (P1–P6), Tiểu khu A và B",
+      "group": "de_an",
+      "file": "bvlos.geojson",
+      "color": "#D01E1E",
+      "fillOpacity": 0.4,
+      "order": 3,
+      "default": true,
+      "source": "S1",
+      "geometry": "polygon"
+    },
+    {
+      "id": "bvlos_diem",
+      "name": "Điểm góc P1–P6, A1–A3",
+      "group": "de_an",
+      "file": "bvlos_diem.geojson",
+      "color": "#111111",
+      "order": 7,
+      "default": true,
+      "source": "S1",
+      "geometry": "point",
+      "minZoom": 12
+    },
+    {
+      "id": "kcnc",
+      "name": "Khu huấn luyện – Khu công nghệ cao",
+      "group": "de_an",
+      "file": "kcnc.geojson",
+      "color": "#8A3CA0",
+      "fillOpacity": 0.5,
+      "order": 5,
+      "default": true,
+      "source": "S2",
+      "geometry": "polygon"
+    },
+    {
+      "id": "son_tra",
+      "name": "Vùng xanh Sơn Trà (5 điểm)",
+      "group": "de_an",
+      "file": "son_tra.geojson",
+      "color": "#D02020",
+      "order": 7,
+      "default": true,
+      "source": "S2",
+      "geometry": "point"
+    },
+    {
+      "id": "hoa_vang",
+      "name": "Hòa Vang (mở rộng)",
+      "group": "de_an",
+      "file": "hoa_vang.geojson",
+      "color": "#0E9F9F",
+      "fillOpacity": 0.4,
+      "order": 4,
+      "default": true,
+      "source": "S5",
+      "geometry": "polygon"
+    },
+    {
+      "id": "dia_danh",
+      "name": "Địa danh tham chiếu (Bà Nà Hills)",
+      "group": "de_an",
+      "file": "dia_danh.geojson",
+      "color": "#F2B705",
+      "order": 8,
+      "default": true,
+      "source": "Tham khảo",
+      "geometry": "point"
+    }
   ],
-  "subColors": { "bvlos-tieu-khu-a": "#2E9A3C", "bvlos-tieu-khu-b": "#E07814" }
+  "subColors": {
+    "bvlos-tieu-khu-a": "#2E9A3C",
+    "bvlos-tieu-khu-b": "#E07814"
+  }
 }
