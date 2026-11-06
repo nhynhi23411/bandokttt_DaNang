@@ -11,7 +11,7 @@
     { "id": "bvlos_diem", "name": "Điểm góc P1–P6, A1–A3", "group": "de_an", "file": "bvlos_diem.geojson", "color": "#111111", "order": 7, "default": true, "source": "S1", "geometry": "point", "minZoom": 12 },
     { "id": "kcnc", "name": "Khu huấn luyện – Khu công nghệ cao", "group": "de_an", "file": "kcnc.geojson", "color": "#8A3CA0", "fillOpacity": 0.5, "order": 5, "default": true, "source": "S2", "geometry": "polygon" },
     { "id": "son_tra", "name": "Vùng xanh Sơn Trà (5 điểm)", "group": "de_an", "file": "son_tra.geojson", "color": "#D02020", "order": 7, "default": true, "source": "S2", "geometry": "point" },
-    { "id": "hoa_vang", "name": "Hòa Vang (mở rộng – vẽ gần đúng, chờ KML)", "group": "de_an", "file": "hoa_vang.geojson", "color": "#0E9F9F", "fillOpacity": 0.4, "order": 4, "default": true, "source": "S5", "geometry": "polygon" }
+    { "id": "hoa_vang", "name": "Hòa Vang (mở rộng)", "group": "de_an", "file": "hoa_vang.geojson", "color": "#0E9F9F", "fillOpacity": 0.4, "order": 4, "default": true, "source": "S5", "geometry": "polygon" }
   ],
   "subColors": { "bvlos-tieu-khu-a": "#2E9A3C", "bvlos-tieu-khu-b": "#E07814" }
 }
