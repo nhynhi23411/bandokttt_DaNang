@@ -132,3 +132,15 @@ body.printing .legend{background:#fff;color:#000}
 .adesc{margin-top:12px;padding:10px 12px;background:var(--bg);border:1px solid var(--line);border-radius:8px}
 .adesc h4{margin:0 0 6px}
 .adesc dl{margin:0;font-size:12.5px}.adesc dt{color:var(--muted);font-weight:600;margin-top:6px}.adesc dd{margin:2px 0 0}
+/* thang độ cao */
+.hrow{padding:10px 18px;border-bottom:1px solid var(--line)}
+.hlab{display:flex;gap:8px;align-items:center;font-size:13.5px;margin-bottom:6px}
+.htrack{position:relative;height:22px;background:var(--bg);border:1px solid var(--line);border-radius:4px}
+.htrack.ticks{height:18px;border:0;background:none}
+.htrack.ticks span{position:absolute;top:0;transform:translateX(-50%);font-size:11px;color:var(--muted)}
+.hb{position:absolute;top:0;bottom:0;left:0;display:block}
+.hb.ceil{opacity:.55;border-radius:3px 0 0 3px}
+.hb.ref{border:2px dashed;background:none;box-sizing:border-box;border-radius:3px 0 0 3px}
+.hb.ter{background:#7b8794;top:7px;bottom:7px;border-radius:2px;opacity:.95}
+.hnote{font-size:12.5px;color:var(--muted);margin-top:6px}
+@media (max-width:800px){#btn-heights{display:none}}

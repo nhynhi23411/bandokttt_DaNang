@@ -456,6 +456,30 @@ map.on('zoomend', syncVisibility);
   window.__map = map;
 })();
 
+// ---------- Thang độ cao ----------
+async function openHeights() {
+  const d = $('#dlg-heights');
+  if (!state.heights) state.heights = await json('/data/heights.json');
+  const { max, rows } = state.heights;
+  const pct = (v) => (v / max) * 100;
+  const ticks = [0, 250, 500, 750, 1000, 1250, 1500].filter((t) => t <= max);
+  const head = `<p class="areas-intro">Độ cao tính bằng mét so với mực nước biển. Thanh xám là dải độ cao địa hình; thanh màu là trần độ cao đề xuất; thanh nét đứt là mốc tham chiếu, không phải độ cao được phép bay. Trần độ cao là đề xuất của Đề án, chưa phải giới hạn được cấp phép.</p>
+    <div class="hrow"><div class="hlab"></div><div class="htrack ticks">${ticks.map((t) => `<span style="left:${pct(t)}%">${t.toLocaleString('vi-VN')}</span>`).join('')}</div></div>`;
+  const body = rows.map((r) => {
+    const bars = [];
+    if (r.ceiling) bars.push(`<i class="hb ceil" style="width:${pct(r.ceiling)}%;background:${r.color}"></i>`);
+    if (r.ref) bars.push(`<i class="hb ref" style="width:${pct(r.ref)}%;border-color:${r.color}"></i>`);
+    if (r.terrain) bars.push(`<i class="hb ter" style="left:${pct(r.terrain[0])}%;width:${Math.max(pct(r.terrain[1] - r.terrain[0]), 0.6)}%"></i>`);
+    const tr = r.terrain ? `Địa hình: ${r.terrain[0] === r.terrain[1] ? fmt(r.terrain[0], 0) : `${fmt(r.terrain[0], 0)}–${fmt(r.terrain[1], 0)}`} m. ` : '';
+    return `<div class="hrow"><div class="hlab"><b>${esc(r.name)}</b>${r.status ? `<span class="badge">${r.status}</span>` : ''}</div><div class="htrack">${bars.join('')}</div><div class="hnote">${tr}${esc(r.ceilingText)}.${r.note ? ' ' + esc(r.note) : ''}</div></div>`;
+  }).join('');
+  $('#heights-body').innerHTML = head + body;
+  if (!d.open) d.showModal();
+}
+$('#btn-heights').onclick = openHeights;
+$('#dlg-heights [data-close]').onclick = () => $('#dlg-heights').close();
+$('#dlg-heights').addEventListener('click', (e) => { if (e.target.id === 'dlg-heights') e.target.close(); });
+
 // ---------- Chế độ 3D ----------
 let v3 = null;
 $('#btn-3d').onclick = async () => {

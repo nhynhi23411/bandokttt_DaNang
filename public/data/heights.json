@@ -1,0 +1,12 @@
+{
+  "max": 1500,
+  "rows": [
+    { "name": "Tiểu khu A – thung lũng hồ Hòa Trung", "color": "#2E9A3C", "terrain": [24, 239], "ceiling": 500, "ceilingText": "Trần 500 m so với mực nước biển (không quá 200 m so với mặt đất)", "status": "Đề xuất", "area": "tieu-khu-a" },
+    { "name": "Tiểu khu B – vùng núi phía Tây", "color": "#E07814", "terrain": [90, 1074], "ceiling": 900, "ceilingText": "Trần đề xuất 900 m so với mực nước biển, không quá 200 m so với mặt đất; chờ ý kiến cơ quan quản lý bay", "status": "Chờ ý kiến", "note": "Chỉ bay trên địa hình không quá 700 m; đỉnh cao hơn 700 m là vùng cấm trong phần mềm điều khiển bay.", "area": "tieu-khu-b" },
+    { "name": "Khu huấn luyện – Khu công nghệ cao", "color": "#8A3CA0", "ref": 1000, "ceilingText": "Mốc che chắn tham chiếu khoảng 1.000 m (độ cao đỉnh núi); không phải độ cao được phép bay", "note": "Hoạt động bay giữ trong vòm núi, dưới độ cao đỉnh núi; độ cao khai thác theo giấy phép.", "area": "kcnc" },
+    { "name": "Vùng xanh Sơn Trà", "color": "#D02020", "ceilingText": "Độ cao khảo sát 500 m so với địa hình; không phải độ cao được phép khai thác", "note": "Mỗi phân vùng (núi – rừng, sườn – chân núi, ven biển) có độ cao tối đa riêng, do cơ quan có thẩm quyền xem xét.", "area": "son-tra" },
+    { "name": "Bà Nà Hills (đỉnh Núi Chúa)", "color": "#F2B705", "terrain": [1487, 1487], "ceilingText": "Độ cao đỉnh 1.487 m so với mực nước biển", "note": "Mốc địa danh tham chiếu." },
+    { "name": "Sân bay Đà Nẵng (điểm quy chiếu)", "color": "#555555", "terrain": [10, 11], "ceilingText": "Cao độ khoảng 10–11 m", "area": "san-bay" },
+    { "name": "Bốn khu vực vùng trời – QĐ 4167", "color": "#2A6FD0", "ceilingText": "Hồ sơ chưa có trần độ cao của bốn khu vực", "area": "qd-1" }
+  ]
+}

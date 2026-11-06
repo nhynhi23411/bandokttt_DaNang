@@ -51,6 +51,7 @@ export function open3D({ el, data, manifest, center, zoom, onPick }) {
     fill('qd-f', 'qd', '#2A6FD0', 0.25); line('qd-l', 'qd', '#2A6FD0', 2);
     fill('hv-f', 'hv', '#0E9F9F', 0.4); line('hv-l', 'hv', '#0E9F9F', 2);
     fill('kcnc-f', 'kcnc', '#8A3CA0', 0.5); line('kcnc-l', 'kcnc', '#8A3CA0', 2);
+    map.addLayer({ id: 'kcnc-3d', type: 'fill-extrusion', source: 'kcnc', paint: { 'fill-extrusion-color': '#8A3CA0', 'fill-extrusion-height': 1000, 'fill-extrusion-base': 0, 'fill-extrusion-opacity': 0.28 } });
     map.addLayer({
       id: 'ab-3d', type: 'fill-extrusion', source: 'ab',
       paint: {
@@ -70,13 +71,13 @@ export function open3D({ el, data, manifest, center, zoom, onPick }) {
     label([108.047, 16.075], 'Tiểu khu A · trần 500 m', 'wide');
     all('bvlos_diem').forEach((f) => label(f.geometry.coordinates, f.properties.name, 'pt'));
     all('qd4167').forEach((f) => label(turf.centroid(f).geometry.coordinates, f.properties.name.split(' – ')[0], ''));
-    all('kcnc').forEach((f) => label(turf.centroid(f).geometry.coordinates, 'Khu huấn luyện', ''));
+    all('kcnc').forEach((f) => label(turf.centroid(f).geometry.coordinates, 'Khu huấn luyện · mốc che chắn tham chiếu 1.000 m (không phải độ cao được phép bay)', 'wide'));
     all('dia_danh').forEach((f) => label(f.geometry.coordinates, '▲ ' + f.properties.name, 'wide'));
     if (dad) label(dad.geometry.coordinates, '★ Sân bay Đà Nẵng', '');
     all('son_tra').forEach((f) => label(f.geometry.coordinates, f.properties.id === 'son-tra-4' ? '' : f.properties.name, 'pt'));
 
     map.on('click', 'ab-3d', (e) => onPick(e.features[0].properties.id));
-    for (const l of ['kcnc-f', 'qd-f', 'pts-c']) map.on('click', l, (e) => onPick(e.features[0].properties.id));
+    for (const l of ['kcnc-3d', 'qd-f', 'pts-c']) map.on('click', l, (e) => onPick(e.features[0].properties.id));
     map.on('mouseenter', 'ab-3d', () => (map.getCanvas().style.cursor = 'pointer'));
     map.on('mouseleave', 'ab-3d', () => (map.getCanvas().style.cursor = ''));
   });
