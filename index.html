@@ -12,6 +12,7 @@
     <button id="btn-menu" class="icon-btn" aria-label="Mở hoặc thu gọn cột trái">☰</button>
     <div class="title"><strong>Bản đồ kinh tế không gian tầm thấp</strong><span>Thành phố Đà Nẵng · Đề án đến năm 2030</span></div>
     <div class="spacer"></div>
+    <button id="btn-3d" class="btn">Xem 3D</button>
     <button id="btn-sources" class="btn">Sổ nguồn</button>
     <div class="menu-wrap">
       <button id="btn-export" class="btn">Xuất dữ liệu ▾</button>
@@ -63,10 +64,11 @@
 
     <main id="mapwrap">
       <div id="map"></div>
+      <div id="map3d" hidden></div>
+      <div id="ctl3d" hidden><b>Chế độ 3D</b><label>Độ phóng đại địa hình <input id="exag" type="range" min="1" max="3" step="0.1" value="1.2"></label><label>Độ trong suốt khối trần <input id="ceil" type="range" min="0.1" max="0.9" step="0.05" value="0.5"></label><p>Trần độ cao so với mực nước biển: Tiểu khu A 500 m; Tiểu khu B 900 m (trần đề xuất, chờ ý kiến của cơ quan quản lý bay). Kéo chuột phải hoặc Ctrl + kéo để xoay và nghiêng.</p></div>
       <div id="basemaps" class="seg floating">
         <button data-base="sat" class="on">Vệ tinh</button>
         <button data-base="topo">Địa hình</button>
-        <button data-base="road">Đường</button>
       </div>
       <div id="legend" class="legend"></div>
       <aside id="detail" hidden>

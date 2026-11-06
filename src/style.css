@@ -95,3 +95,16 @@ dialog::backdrop{background:#0008}
   #notice{background:#fff;color:#000;font-size:10px}
   *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
 }
+/* 3D và nút xóa */
+#map3d{position:absolute;inset:0;z-index:950;background:#0b1a2a}
+#map3d[hidden],#ctl3d[hidden]{display:none}
+#ctl3d{position:absolute;left:10px;bottom:28px;z-index:960;width:260px;background:var(--panel);color:var(--text);padding:10px 12px;border-radius:8px;box-shadow:0 2px 8px #0005;font-size:12px}
+#ctl3d label{display:block;margin-top:6px;color:var(--muted)}#ctl3d input{width:100%}#ctl3d p{margin:8px 0 0;color:var(--muted)}
+.lbl3d{background:#000b;color:#fff;font-size:11px;padding:1px 6px;border-radius:3px;white-space:nowrap;pointer-events:none}
+.lbl3d.pt{background:#fffd;color:#000;font-weight:700}
+.lbl3d.wide{font-size:12px;background:#000c}
+.lbl3d:empty{display:none}
+.tbar{margin-top:8px}
+.btn.danger{border-color:#c0392b;color:#c0392b}.btn.danger:hover{background:#c0392b;color:#fff}
+.tool-out{position:sticky;bottom:0}
+@media print{#map3d,#ctl3d{display:none!important}}

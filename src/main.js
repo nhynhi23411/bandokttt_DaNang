@@ -27,7 +27,6 @@ map.createPane('p-tools').style.zIndex = 500;
 const bases = {
   sat: L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { maxNativeZoom: 18, maxZoom: 19, attribution: 'Ảnh vệ tinh © Esri, Maxar, Earthstar Geographics' }),
   topo: L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', { maxNativeZoom: 17, maxZoom: 19, attribution: '© OpenStreetMap, SRTM | © OpenTopoMap' }),
-  road: L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxNativeZoom: 19, maxZoom: 19, attribution: '© OpenStreetMap' }),
 };
 let curBase = 'sat';
 function setBase(id) {
@@ -218,20 +217,33 @@ $('#dlg-sources').addEventListener('click', (e) => { if (e.target.id === 'dlg-so
 
 // ---------- Công cụ ----------
 const toolLayer = L.featureGroup().addTo(map);
-let pts = [], toolPoly = null;
+let pts = [];
 const out = $('#tool-out');
+const HELP = { check: 'Bấm lên bản đồ hoặc nhập tọa độ ở ô tìm để kiểm tra vị trí.', draw: 'Bấm các đỉnh; bấm đúp hoặc nút "Xong" để kết thúc.', measure: 'Bấm hai điểm để đo khoảng cách.' };
+
+function renderTool(res) {
+  if (!state.tool) { out.hidden = true; out.innerHTML = ''; return; }
+  const extra = state.tool === 'draw' ? '<button class="btn small" data-act="undo">↶ Hoàn tác đỉnh</button><button class="btn small" data-act="done">✓ Xong</button>' : '';
+  out.hidden = false;
+  out.innerHTML = `<div>${res || `<p>${HELP[state.tool]}</p>`}</div><div class="btns tbar">${extra}<button class="btn small danger" data-act="clear">🗑 Xóa</button></div>`;
+}
+function clearTool() { toolLayer.clearLayers(); pts = []; state.drawDone = false; renderTool(); }
+out.addEventListener('click', (e) => {
+  const a = e.target.closest('[data-act]')?.dataset.act;
+  if (a === 'clear') clearTool();
+  else if (a === 'undo') { state.drawDone = false; pts.pop(); drawPreview(); }
+  else if (a === 'done') finishDraw();
+});
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && state.tool) clearTool(); });
 
 function setTool(t) {
   state.tool = state.tool === t ? null : t;
   $$('.tool').forEach((b) => b.classList.toggle('on', b.dataset.tool === state.tool));
-  resetTool();
+  toolLayer.clearLayers(); pts = []; state.drawDone = false;
   map.getContainer().classList.toggle('crosshair', !!state.tool);
   if (state.tool === 'draw') map.doubleClickZoom.disable(); else map.doubleClickZoom.enable();
-  const msg = { check: 'Bấm lên bản đồ hoặc nhập tọa độ ở ô tìm để kiểm tra vị trí.', draw: 'Bấm các đỉnh, bấm đúp để kết thúc.', measure: 'Bấm hai điểm để đo khoảng cách.' }[state.tool];
-  out.hidden = !msg;
-  out.innerHTML = msg ? `<p>${msg}</p>` : '';
+  renderTool();
 }
-function resetTool() { toolLayer.clearLayers(); pts = []; toolPoly = null; }
 $$('.tool').forEach((b) => (b.onclick = () => setTool(b.dataset.tool)));
 
 function checkPoint(lat, lon) {
@@ -247,45 +259,48 @@ function checkPoint(lat, lon) {
     const lim = [p.agl_max_m && `≤ ${p.agl_max_m} m so với mặt đất`, p.amsl_max_m && `≤ ${p.amsl_max_m} m so với mực nước biển`].filter(Boolean).join('; ');
     return `<li><b>${esc(p.name)}</b>${lim ? `<br>Giới hạn độ cao: ${lim}` : ''}</li>`;
   }).join('') : '<li>Điểm không nằm trong vùng nào của Đề án.</li>';
-  out.hidden = false;
-  out.innerHTML = `<p><b>${dec(lat)}, ${dec(lon)}</b><br>${dms(lat, true)} ${dms(lon, false)}</p><ul>${list}</ul><p>Cách điểm quy chiếu sân bay: <b>${fmt(d, 2)} km</b></p><p class="hint">${WARN}</p>`;
+  renderTool(`<p><b>${dec(lat)}, ${dec(lon)}</b><br>${dms(lat, true)} ${dms(lon, false)}</p><ul>${list}</ul><p>Cách điểm quy chiếu sân bay: <b>${fmt(d, 2)} km</b></p><p class="hint">${WARN}</p>`);
   return hits;
 }
 
 function mapClick(ll) {
   if (state.tool === 'check') checkPoint(ll.lat, ll.lng);
   else if (state.tool === 'measure') {
-    if (pts.length >= 2) resetTool();
+    if (pts.length >= 2) { toolLayer.clearLayers(); pts = []; }
     pts.push(ll);
     L.circleMarker(ll, { radius: 5, color: '#fff', fillColor: '#ff8a00', fillOpacity: 1, pane: 'p-tools' }).addTo(toolLayer);
     if (pts.length === 2) {
       L.polyline(pts, { color: '#ff8a00', weight: 3, pane: 'p-tools' }).addTo(toolLayer);
       const m = turf.distance([pts[0].lng, pts[0].lat], [pts[1].lng, pts[1].lat], { units: 'meters' });
-      out.innerHTML = `<p>Khoảng cách: <b>${m >= 1000 ? fmt(m / 1000, 3) + ' km' : fmt(m, 1) + ' m'}</b></p>`;
-    }
+      renderTool(`<p>Khoảng cách: <b>${m >= 1000 ? fmt(m / 1000, 3) + ' km' : fmt(m, 1) + ' m'}</b></p>`);
+    } else renderTool('<p>Bấm điểm thứ hai.</p>');
   } else if (state.tool === 'draw') {
-    if (state.drawDone) { resetTool(); state.drawDone = false; }
+    if (state.drawDone) { toolLayer.clearLayers(); pts = []; state.drawDone = false; }
     pts.push(ll);
     drawPreview();
   }
 }
-function drawPreview(done) {
+function drawPreview() {
   toolLayer.clearLayers();
-  if (pts.length > 1) (done ? L.polygon : L.polyline)(pts, { color: '#ff8a00', weight: 3, fillOpacity: 0.2, pane: 'p-tools' }).addTo(toolLayer);
+  if (pts.length > 1) (state.drawDone ? L.polygon : L.polyline)(pts, { color: '#ff8a00', weight: 3, fillOpacity: 0.2, pane: 'p-tools' }).addTo(toolLayer);
   pts.forEach((p) => L.circleMarker(p, { radius: 4, color: '#fff', fillColor: '#ff8a00', fillOpacity: 1, pane: 'p-tools' }).addTo(toolLayer));
+  if (state.drawDone) return;
+  if (pts.length >= 3) {
+    const a = turf.area(turf.polygon([[...pts, pts[0]].map((p) => [p.lng, p.lat])]));
+    renderTool(`<p>${pts.length} đỉnh · diện tích tạm tính ${fmt(a / 1e6, 3)} km²</p>`);
+  } else renderTool(`<p>${pts.length ? pts.length + ' đỉnh. ' : ''}${HELP.draw}</p>`);
 }
-map.on('click', (e) => state.tool && mapClick(e.latlng));
-map.on('dblclick', () => {
-  if (state.tool !== 'draw') return;
-  pts.pop();
-  if (pts.length < 3) return;
-  drawPreview(true);
+function finishDraw() {
+  if (state.tool !== 'draw' || pts.length < 3) return;
   state.drawDone = true;
+  drawPreview();
   const poly = turf.polygon([[...pts, pts[0]].map((p) => [p.lng, p.lat])]);
   const a = turf.area(poly), per = turf.length(turf.polygonToLine(poly), { units: 'kilometers' });
-  out.innerHTML = `<p>Diện tích: <b>${fmt(a / 1e6, 3)} km²</b> (${fmt(a / 1e4, 2)} ha)<br>Chu vi: <b>${fmt(per, 3)} km</b></p><table class="vt"><tbody>${pts.map((p, i) => `<tr><td>${i + 1}</td><td>${dec(p.lat)}, ${dec(p.lng)}</td></tr>`).join('')}</tbody></table><button class="btn small" id="clr">Xóa</button>`;
-  $('#clr').onclick = () => { resetTool(); out.innerHTML = '<p>Bấm các đỉnh, bấm đúp để kết thúc.</p>'; };
-});
+  renderTool(`<p>Diện tích: <b>${fmt(a / 1e6, 3)} km²</b> (${fmt(a / 1e4, 2)} ha)<br>Chu vi: <b>${fmt(per, 3)} km</b></p><table class="vt"><tbody>${pts.map((p, i) => `<tr><td>${i + 1}</td><td>${dec(p.lat)}, ${dec(p.lng)}</td></tr>`).join('')}</tbody></table>`);
+}
+map.on('click', (e) => state.tool && mapClick(e.latlng));
+map.on('dblclick', () => { if (state.tool === 'draw' && !state.drawDone) { pts.pop(); finishDraw(); } });
+
 
 // ---------- Tìm kiếm ----------
 const norm = (s) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/đ/gi, 'd').toLowerCase();
@@ -343,7 +358,7 @@ $$('#levels button').forEach((b) => (b.onclick = () => {
 // ---------- Giao diện ----------
 function buildSidebar() {
   const m = state.manifest;
-  const nen = `<div class="grp"><h3>Nền</h3>${[['sat', 'Vệ tinh'], ['topo', 'Địa hình'], ['road', 'Bản đồ đường']].map(([v, n]) => `<label><input type="radio" name="base" value="${v}" ${v === 'sat' ? 'checked' : ''}> ${n}</label>`).join('')}</div>`;
+  const nen = `<div class="grp"><h3>Nền</h3>${[['sat', 'Vệ tinh'], ['topo', 'Địa hình']].map(([v, n]) => `<label><input type="radio" name="base" value="${v}" ${v === 'sat' ? 'checked' : ''}> ${n}</label>`).join('')}</div>`;
   const grp = m.groups.filter((g) => g.id !== 'nen').map((g) => `<div class="grp"><h3>${g.name}</h3>${m.layers.filter((l) => l.group === g.id).sort((a, b) => a.order - b.order).map((l) => {
     const dots = l.id === 'bvlos' ? `<i class="dot" style="background:#D01E1E"></i>` : `<i class="dot" style="background:${l.color}"></i>`;
     return `<label>${dots}<input type="checkbox" id="chk-${l.id}" ${l.default ? 'checked' : ''}> ${l.name}</label>`;
@@ -406,3 +421,28 @@ map.on('zoomend', syncVisibility);
   level('city');
   window.__map = map;
 })();
+
+// ---------- Chế độ 3D ----------
+let v3 = null;
+$('#btn-3d').onclick = async () => {
+  const b = $('#btn-3d');
+  if (v3) {
+    const { center, zoom } = v3.view();
+    v3.destroy(); v3 = null;
+    $('#map3d').hidden = true; $('#ctl3d').hidden = true; $('#map').style.visibility = ''; $('#basemaps').hidden = false;
+    map.setView(center, Math.min(zoom + 1, 19), { animate: false });
+    b.textContent = 'Xem 3D'; b.classList.remove('on');
+    return;
+  }
+  b.disabled = true;
+  const { open3D } = await import('./view3d.js');
+  b.disabled = false;
+  const c = map.getCenter();
+  $('#map3d').hidden = false; $('#ctl3d').hidden = false; $('#basemaps').hidden = true;
+  $('#map').style.visibility = 'hidden';
+  v3 = open3D({ el: 'map3d', data: state.data, manifest: state.manifest, center: map.getZoom() < 11 ? [108.0, 16.05] : [c.lng, c.lat], zoom: map.getZoom() < 11 ? 12.3 : map.getZoom(), onPick: (id) => state.feats[id] && showDetail(state.feats[id].f) });
+  window.__m3 = v3.map;
+  b.textContent = 'Về 2D'; b.classList.add('on');
+};
+$('#exag').oninput = (e) => v3?.setExaggeration(+e.target.value);
+$('#ceil').oninput = (e) => v3?.setCeilingOpacity(+e.target.value);
