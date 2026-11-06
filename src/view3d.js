@@ -35,7 +35,7 @@ export function open3D({ el, data, manifest, center, zoom, onPick }) {
   const all = (id) => data[id]?.features || [];
 
   map.on('load', () => {
-    map.setTerrain({ source: 'dem', exaggeration: 1.2 });
+    map.setTerrain({ source: 'dem', exaggeration: 1 });
     const add = (id, features) => map.addSource(id, { type: 'geojson', data: { type: 'FeatureCollection', features } });
 
     add('qd', all('qd4167')); add('hv', all('hoa_vang')); add('kcnc', all('kcnc'));
@@ -51,12 +51,12 @@ export function open3D({ el, data, manifest, center, zoom, onPick }) {
     fill('qd-f', 'qd', '#2A6FD0', 0.25); line('qd-l', 'qd', '#2A6FD0', 2);
     fill('hv-f', 'hv', '#0E9F9F', 0.4); line('hv-l', 'hv', '#0E9F9F', 2);
     fill('kcnc-f', 'kcnc', '#8A3CA0', 0.5); line('kcnc-l', 'kcnc', '#8A3CA0', 2);
-    map.addLayer({ id: 'kcnc-3d', type: 'fill-extrusion', source: 'kcnc', paint: { 'fill-extrusion-color': '#8A3CA0', 'fill-extrusion-height': 1000, 'fill-extrusion-base': 0, 'fill-extrusion-opacity': 0.28 } });
+    map.addLayer({ id: 'kcnc-3d', type: 'fill-extrusion', source: 'kcnc', filter: ['==', ['get', 'id'], 'khu-huan-luyen-3-3ha'], paint: { 'fill-extrusion-color': '#8A3CA0', 'fill-extrusion-height': 1000, 'fill-extrusion-base': 0, 'fill-extrusion-opacity': 0.28 } });
     map.addLayer({
       id: 'ab-3d', type: 'fill-extrusion', source: 'ab',
       paint: {
         'fill-extrusion-color': ['match', ['get', 'id'], 'bvlos-tieu-khu-a', '#2E9A3C', '#E07814'],
-        'fill-extrusion-height': ['get', 'amsl_max_m'],
+        'fill-extrusion-height': ['*', ['get', 'amsl_max_m'], 1],
         'fill-extrusion-base': 0,
         'fill-extrusion-opacity': 0.5,
       },
@@ -67,15 +67,22 @@ export function open3D({ el, data, manifest, center, zoom, onPick }) {
     map.addLayer({ id: 'pts-c', type: 'circle', source: 'pts', paint: { 'circle-radius': ['case', ['==', ['get', 'layer'], 'son_tra'], 6, 4], 'circle-color': ['case', ['==', ['get', 'layer'], 'son_tra'], '#D02020', '#ffffff'], 'circle-stroke-color': '#000', 'circle-stroke-width': 1.5 } });
 
     // nhãn
-    label([108.0215, 16.075], 'Tiểu khu B · trần đề xuất 900 m (so với mực nước biển) – chờ ý kiến', 'wide');
-    label([108.047, 16.075], 'Tiểu khu A · trần 500 m', 'wide');
+    label([108.0215, 16.075], 'Tiểu khu B · trần đề xuất 900 m so với mực nước biển (chờ ý kiến) · ≤ 200 m so với mặt đất', 'wide');
+    label([108.047, 16.075], 'Tiểu khu A · trần 500 m so với mực nước biển · ≤ 200 m so với mặt đất', 'wide');
     all('bvlos_diem').forEach((f) => label(f.geometry.coordinates, f.properties.name, 'pt'));
     all('qd4167').forEach((f) => label(turf.centroid(f).geometry.coordinates, f.properties.name.split(' – ')[0], ''));
-    all('kcnc').forEach((f) => label(turf.centroid(f).geometry.coordinates, 'Khu huấn luyện · mốc che chắn tham chiếu 1.000 m (không phải độ cao được phép bay)', 'wide'));
-    all('dia_danh').forEach((f) => label(f.geometry.coordinates, '▲ ' + f.properties.name, 'wide'));
+    all('kcnc').filter((f) => f.properties.id === 'khu-huan-luyen-3-3ha').forEach((f) => label(turf.centroid(f).geometry.coordinates, 'Khu huấn luyện · mốc che chắn tham chiếu 1.000 m (không phải độ cao được phép bay)', 'wide'));
+    all('dia_danh').forEach((f) => label(f.geometry.coordinates, '▲ ' + f.properties.name + ' · ' + f.properties.elev_m + ' m', 'wide'));
+    const st = all('son_tra').find((f) => f.properties.id === 'son-tra-3');
+    if (st) label(st.geometry.coordinates, 'Vùng xanh Sơn Trà · độ cao khảo sát 500 m so với địa hình (không phải độ cao được phép)', 'wide up');
     if (dad) label(dad.geometry.coordinates, '★ Sân bay Đà Nẵng', '');
     all('son_tra').forEach((f) => label(f.geometry.coordinates, f.properties.id === 'son-tra-4' ? '' : f.properties.name, 'pt'));
 
+    map.on('mousemove', (e) => {
+      const el = document.getElementById('elev');
+      const h = map.queryTerrainElevation(e.lngLat);
+      if (el) el.textContent = h == null ? '–' : Math.round(h).toLocaleString('vi-VN') + ' m';
+    });
     map.on('click', 'ab-3d', (e) => onPick(e.features[0].properties.id));
     for (const l of ['kcnc-3d', 'qd-f', 'pts-c']) map.on('click', l, (e) => onPick(e.features[0].properties.id));
     map.on('mouseenter', 'ab-3d', () => (map.getCanvas().style.cursor = 'pointer'));
@@ -84,7 +91,11 @@ export function open3D({ el, data, manifest, center, zoom, onPick }) {
 
   return {
     map,
-    setExaggeration: (v) => map.getTerrain() && map.setTerrain({ source: 'dem', exaggeration: v }),
+    setExaggeration: (v) => {
+      if (map.getTerrain()) map.setTerrain({ source: 'dem', exaggeration: v });
+      if (map.getLayer('ab-3d')) map.setPaintProperty('ab-3d', 'fill-extrusion-height', ['*', ['get', 'amsl_max_m'], v]);
+      if (map.getLayer('kcnc-3d')) map.setPaintProperty('kcnc-3d', 'fill-extrusion-height', 1000 * v);
+    },
     setCeilingOpacity: (v) => map.getLayer('ab-3d') && map.setPaintProperty('ab-3d', 'fill-extrusion-opacity', v),
     view: () => ({ center: map.getCenter(), zoom: map.getZoom() }),
     destroy() { markers.forEach((m) => m.remove()); map.remove(); },

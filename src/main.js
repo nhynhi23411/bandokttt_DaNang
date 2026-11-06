@@ -44,7 +44,9 @@ const short = (p) => {
   if (p.id === 'bvlos-tong-the') return `Khu BVLOS · ${state.labels.bvlosArea}`;
   if (p.id === 'bvlos-tieu-khu-a') return 'Tiểu khu A';
   if (p.id === 'bvlos-tieu-khu-b') return 'Tiểu khu B';
-  if (p.id === 'khu-huan-luyen-kcnc') return 'Khu huấn luyện – Khu CNC';
+  if (p.id === 'khu-huan-luyen-3-3ha') return 'Khu huấn luyện (khoảng 3,3 ha)';
+  if (p.id === 'khu-huan-luyen-kcnc') return 'Khu công nghệ cao (phạm vi theo Đề án)';
+  
   if (p.layer === 'qd4167') return p.name.split(' – ')[0];
   return p.name;
 };
@@ -93,10 +95,11 @@ function buildLayer(m, fc) {
     if (f.geometry.type === 'Polygon' || f.geometry.type === 'MultiPolygon') {
       const sub = (m.id === 'bvlos' && p.id !== 'bvlos-tong-the') ? state.manifest.subColors[p.id] : null;
       const isTotal = p.id === 'bvlos-tong-the';
-      const base = isTotal ? 0 : (m.fillOpacity ?? 0.3);
+      const isKcncBig = p.id === 'khu-huan-luyen-kcnc';
+      const base = isTotal ? 0 : isKcncBig ? 0.08 : (m.fillOpacity ?? 0.3);
       const pane = m.id === 'qd4167' ? 'p-qd' : m.id === 'kcnc' ? 'p-kcnc' : isTotal ? 'p-outline' : p.id === 'bvlos-tieu-khu-a' ? 'p-a' : p.id === 'bvlos-tieu-khu-b' ? 'p-b' : 'p-qd';
       const color = sub || m.color;
-      lyr = L.geoJSON(f, { style: { ...layerOpts(m), color: isTotal ? '#D01E1E' : color, fillColor: color, fillOpacity: base, weight: isTotal ? 3 : 1.5, pane } }).getLayers()[0];
+      lyr = L.geoJSON(f, { style: { ...layerOpts(m), color: isTotal ? '#D01E1E' : color, fillColor: color, fillOpacity: base, weight: isTotal ? 3 : 1.5, dashArray: isKcncBig ? '6 6' : null, pane } }).getLayers()[0];
       lyr.options.baseFill = base;
       state.polyBase.push(lyr);
       lyr.bindTooltip(tip(short(p), p.id.startsWith('bvlos-tieu') || p.layer === 'kcnc' ? 'min12' : ''), { permanent: true }).openTooltip?.();

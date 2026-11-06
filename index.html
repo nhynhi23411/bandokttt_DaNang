@@ -67,7 +67,7 @@
     <main id="mapwrap">
       <div id="map"></div>
       <div id="map3d" hidden></div>
-      <div id="ctl3d" hidden><b>Chế độ 3D</b><label>Độ phóng đại địa hình <input id="exag" type="range" min="1" max="3" step="0.1" value="1.2"></label><label>Độ trong suốt khối trần <input id="ceil" type="range" min="0.1" max="0.9" step="0.05" value="0.5"></label><p>Trần độ cao so với mực nước biển: Tiểu khu A 500 m; Tiểu khu B 900 m (trần đề xuất, chờ ý kiến của cơ quan quản lý bay). Kéo chuột phải hoặc Ctrl + kéo để xoay và nghiêng.</p></div>
+      <div id="ctl3d" hidden><b>Chế độ 3D</b><label>Độ phóng đại địa hình <input id="exag" type="range" min="1" max="3" step="0.1" value="1"></label><label>Độ trong suốt khối trần <input id="ceil" type="range" min="0.1" max="0.9" step="0.05" value="0.5"></label><div class="hl3d"><div><i style="background:#2E9A3C"></i>Tiểu khu A: trần 500 m (≤ 200 m so với mặt đất)</div><div><i style="background:#E07814"></i>Tiểu khu B: trần đề xuất 900 m, chờ ý kiến</div><div><i style="background:#8A3CA0"></i>Khu huấn luyện: mốc tham chiếu 1.000 m, không phải độ cao được phép bay</div><div><i style="background:#D02020"></i>Sơn Trà: khảo sát 500 m so với địa hình</div><div><i style="background:#F2B705"></i>Bà Nà Hills: đỉnh 1.487 m</div></div><p class="elev">Độ cao địa hình tại con trỏ: <b id="elev">–</b></p><p>Độ cao tính so với mực nước biển. Kéo chuột phải hoặc Ctrl + kéo để xoay và nghiêng.</p></div>
       <div id="basemaps" class="seg floating">
         <button data-base="sat" class="on">Vệ tinh</button>
         <button data-base="topo">Địa hình</button>
