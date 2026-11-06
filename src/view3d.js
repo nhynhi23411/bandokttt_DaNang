@@ -45,7 +45,7 @@ export function open3D({ el, data, manifest, center, zoom, onPick }) {
     const dad = all('san_bay').find((f) => f.geometry.type === 'Point');
     add('ring', dad ? [turf.polygonToLine(turf.circle(dad.geometry.coordinates, 15, { units: 'kilometers', steps: 128 }))] : []);
     add('pts', [...all('bvlos_diem'), ...all('son_tra')]);
-    add('hl', all('hanh_lang').filter((f) => f.geometry.type === 'Polygon'));
+    add('hl', [...all('hanh_lang'), ...all('hanh_lang_dat')].filter((f) => f.geometry.type === 'Polygon'));
 
     const fill = (id, src, color, op) => map.addLayer({ id, type: 'fill', source: src, paint: { 'fill-color': color, 'fill-opacity': op } });
     const line = (id, src, color, w, dash) => map.addLayer({ id, type: 'line', source: src, paint: { 'line-color': color, 'line-width': w, ...(dash ? { 'line-dasharray': dash } : {}) } });
@@ -65,7 +65,9 @@ export function open3D({ el, data, manifest, center, zoom, onPick }) {
     line('tong-l', 'tong', '#D01E1E', 3);
     line('ring-l', 'ring', '#dddddd', 2, [3, 3]);
     line('rw', 'runway', '#111111', 4);
-    fill('hl-f', 'hl', '#00B8D9', 0.4); line('hl-l', 'hl', '#00B8D9', 3);
+    const hc = ['match', ['get', 'layer'], 'hanh_lang_dat', '#E83E8C', '#00B8D9'];
+    fill('hl-f', 'hl', hc, 0.4); line('hl-l', 'hl', hc, 3);
+    all('hanh_lang_dat').forEach((f) => label(turf.center(f).geometry.coordinates, 'Hành lang Khu CNC – Hòa Vang', 'wide'));
     map.addLayer({ id: 'pts-c', type: 'circle', source: 'pts', paint: { 'circle-radius': ['case', ['==', ['get', 'layer'], 'son_tra'], 6, 4], 'circle-color': ['case', ['==', ['get', 'layer'], 'son_tra'], '#D02020', '#ffffff'], 'circle-stroke-color': '#000', 'circle-stroke-width': 1.5 } });
 
     // nhãn

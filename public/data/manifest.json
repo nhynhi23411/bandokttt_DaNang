@@ -86,7 +86,7 @@
     },
     {
       "id": "hoa_vang",
-      "name": "Hòa Vang (mở rộng)",
+      "name": "Hòa Vang",
       "group": "de_an",
       "file": "hoa_vang.geojson",
       "color": "#0E9F9F",
@@ -118,6 +118,18 @@
       "source": "S2",
       "geometry": "mixed",
       "fillOpacity": 0.4
+    },
+    {
+      "id": "hanh_lang_dat",
+      "name": "Hành lang bay trong đất liền – Khu CNC – Hòa Vang",
+      "group": "de_an",
+      "file": "hanh_lang_dat.geojson",
+      "color": "#E83E8C",
+      "fillOpacity": 0.4,
+      "order": 8,
+      "default": true,
+      "source": "S2",
+      "geometry": "polygon"
     }
   ],
   "subColors": {

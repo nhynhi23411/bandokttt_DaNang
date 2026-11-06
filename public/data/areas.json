@@ -141,6 +141,21 @@
     "basis": "Quyết định số 4167/QĐ-UBND; Đề án v20."
   },
   {
+    "id": "hanh-lang-dat",
+    "name": "Hành lang bay thử trong đất liền: Khu công nghệ cao – Hòa Vang",
+    "status": "Đề xuất",
+    "features": [
+      "hanh-lang-dat-lien"
+    ],
+    "layers": [
+      "hanh_lang_dat"
+    ],
+    "location": "Dải bay thẳng nối khu huấn luyện tại Khu công nghệ cao với vùng Hòa Vang, dài khoảng 17 km, rộng khoảng 1 km. Đường vẽ trên bản đồ là tuyến tạm thời; tọa độ chính thức sẽ bổ sung khi có.",
+    "purpose": "Bay thử trong đất liền giữa khu huấn luyện giai đoạn 1 tại Khu công nghệ cao và khu thử nghiệm tích hợp giai đoạn 2 tại Hòa Vang.",
+    "limits": "Chưa có trần độ cao trong hồ sơ. Hòa Vang chưa có chấp thuận không phận và chỉ sử dụng sau ý kiến bằng văn bản của Bộ Tư lệnh Quân khu 5, Bộ Chỉ huy quân sự thành phố, Cảng hàng không quốc tế Đà Nẵng và Công ty Quản lý bay miền Trung. Mọi chuyến bay phải có giấy phép của cơ quan có thẩm quyền.",
+    "basis": "Đề án v20, Mục B.IV.1 (phân kỳ không gian: giai đoạn 1 tại Khu công nghệ cao, giai đoạn 2 tại Hòa Vang)."
+  },
+  {
     "id": "hanh-lang",
     "name": "Hành lang bay vượt biển hướng Cù Lao Chàm",
     "status": "Đề xuất",
@@ -190,7 +205,7 @@
   },
   {
     "id": "hoa-vang",
-    "name": "Hòa Vang – khu mở rộng (chờ KML chính thức)",
+    "name": "Hòa Vang (chờ KML chính thức)",
     "status": "Đề xuất",
     "features": [],
     "layers": [

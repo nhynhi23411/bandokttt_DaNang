@@ -416,6 +416,7 @@ function buildSidebar() {
     <div><i class="sw" style="font-style:normal;text-align:center;line-height:10px">★</i>Sân bay Đà Nẵng</div>
     <div><i class="sw" style="color:#F2B705;text-align:center;line-height:10px">▲</i>Bà Nà Hills</div>
     <div><i class="sw" style="background:#00B8D966;border:1px solid #00B8D9"></i>Hành lang Cù Lao Chàm</div>
+    <div><i class="sw" style="background:#E83E8C66;border:1px solid #E83E8C"></i>Hành lang Khu CNC – Hòa Vang</div>
     <div><i class="sw" style="border-top:2px dashed #888;height:0"></i>Vòng 15 km (minh họa)</div>`;
 }
 
