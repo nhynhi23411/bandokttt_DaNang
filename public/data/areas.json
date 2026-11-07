@@ -172,6 +172,53 @@
     "basis": "Đề án v20, Mục B.IV.2 (nội dung về Cù Lao Chàm); phạm vi vòng tròn do người lập bản đồ đề xuất."
   },
   {
+    "id": "sam-ngoc-linh",
+    "name": "Vùng sâm Ngọc Linh (Nam Trà My)",
+    "status": "Đề xuất",
+    "features": [
+      "sam-tra-linh",
+      "sam-tra-tập",
+      "sam-tra-leng"
+    ],
+    "layers": [
+      "sam_ngoc_linh"
+    ],
+    "location": "Ba xã Trà Linh, Trà Tập, Trà Leng thuộc khu vực chỉ dẫn địa lý sâm Ngọc Linh, vùng núi phía Tây Nam Thành phố. Phụ lục Đề án còn ghi xã Nam Trà My; ranh giới xã này chưa có trong dữ liệu nên chưa vẽ.",
+    "purpose": "Lập hồ sơ vùng trồng và truy xuất nguồn gốc sâm Ngọc Linh bằng phương tiện bay: bản đồ vùng trồng gắn mã số cơ sở trồng, ước tính diện tích và tuổi cây, hỗ trợ kiểm tra thực địa, cấp tem truy xuất, phát hiện xâm nhập và trộm cắp.",
+    "limits": "Thuộc nhóm ứng dụng 2 trong Phụ lục; chưa có hồ sơ không phận cho khu vực này. Mọi chuyến bay phải có giấy phép của cơ quan có thẩm quyền.",
+    "basis": "Phụ lục Đề án v20 (danh mục ứng dụng, mục về sâm Ngọc Linh); ranh giới xã theo Cổng thông tin điện tử Bộ Quốc phòng."
+  },
+  {
+    "id": "han-che",
+    "name": "Khu vực hạn chế bay (vùng cam)",
+    "status": "",
+    "features": [
+      "han-che-bay"
+    ],
+    "layers": [
+      "han_che"
+    ],
+    "location": "Các vùng hạn chế bay tàu bay không người lái và phương tiện bay khác trên địa bàn Thành phố Đà Nẵng và vùng lân cận, lấy từ dữ liệu của Cổng thông tin điện tử Bộ Quốc phòng; bao quanh vùng cấm bay quanh sân bay Đà Nẵng.",
+    "purpose": "Cho biết nơi chỉ được bay khi đáp ứng điều kiện hạn chế, làm lớp nền để đối chiếu vị trí các khu vực của Đề án.",
+    "limits": "Cần giấy phép và tuân thủ điều kiện của cơ quan có thẩm quyền. Dữ liệu nền chỉ mang tính tham khảo theo ghi chú của cổng.",
+    "basis": "Cổng thông tin điện tử Bộ Quốc phòng (cambay.mod.gov.vn)."
+  },
+  {
+    "id": "cam-bay",
+    "name": "Khu vực cấm bay (vùng đỏ)",
+    "status": "",
+    "features": [
+      "cam-bay"
+    ],
+    "layers": [
+      "cam_bay"
+    ],
+    "location": "Các vùng cấm bay tàu bay không người lái và phương tiện bay khác trên địa bàn Thành phố Đà Nẵng và vùng lân cận, lấy từ dữ liệu của Cổng thông tin điện tử Bộ Quốc phòng; bao gồm vùng quanh sân bay Đà Nẵng. Theo Quy chế bay trong khu vực sân bay Đà Nẵng (mục 3.8.3), khu vực cấm bay VVP3 trên thành phố nằm ở phía Đông đường cất hạ cánh, giới hạn bởi bốn điểm 16°05'00\"N 108°13'40\"E; 16°02'50\"N 108°13'10\"E; 16°02'50\"N 108°12'25\"E; 16°04'18\"N 108°12'25\"E.",
+    "purpose": "Cho biết nơi không được bay, làm lớp nền để đối chiếu vị trí các khu vực của Đề án (Vùng xanh) với toàn bộ không gian cấm bay.",
+    "limits": "VVP3: cấm bay từ mặt đất đến 1.500 m, 24/24 giờ trong ngày. Ghi chú của cổng: dữ liệu hành chính đang được cập nhật, dữ liệu nền chỉ mang tính tham khảo. Việc bay phải theo quy định và giấy phép của cơ quan có thẩm quyền.",
+    "basis": "Cổng thông tin điện tử Bộ Quốc phòng (cambay.mod.gov.vn); Quy chế bay trong khu vực sân bay Đà Nẵng (ban hành 10/2024), mục 3.8.3."
+  },
+  {
     "id": "san-bay",
     "name": "Sân bay Đà Nẵng và vòng 15 km (minh họa)",
     "status": "",

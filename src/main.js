@@ -22,6 +22,7 @@ L.control.zoom({ position: 'topleft', zoomInTitle: 'Phóng to', zoomOutTitle: 'T
 L.control.scale({ metric: true, imperial: false, position: 'bottomright' }).addTo(map);
 ['p-b', 'p-a', 'p-outline', 'p-kcnc', 'p-air', 'p-pts'].forEach((n, i) => { map.createPane(n).style.zIndex = 410 + i * 10; });
 map.createPane('p-qd').style.zIndex = 405;
+map.createPane('p-nofly').style.zIndex = 400;
 map.createPane('p-tools').style.zIndex = 500;
 
 const bases = {
@@ -99,12 +100,12 @@ function buildLayer(m, fc) {
       const isTotal = p.id === 'bvlos-tong-the';
       const isKcncBig = p.id === 'khu-huan-luyen-kcnc';
       const base = isTotal ? 0 : isKcncBig ? 0.08 : (m.fillOpacity ?? 0.3);
-      const pane = m.id === 'qd4167' ? 'p-qd' : m.id === 'kcnc' ? 'p-kcnc' : isTotal ? 'p-outline' : p.id === 'bvlos-tieu-khu-a' ? 'p-a' : p.id === 'bvlos-tieu-khu-b' ? 'p-b' : 'p-qd';
+      const pane = ['cam_bay', 'han_che', 'sam_ngoc_linh'].includes(m.id) ? 'p-nofly' : m.id === 'qd4167' ? 'p-qd' : m.id === 'kcnc' ? 'p-kcnc' : isTotal ? 'p-outline' : p.id === 'bvlos-tieu-khu-a' ? 'p-a' : p.id === 'bvlos-tieu-khu-b' ? 'p-b' : 'p-qd';
       const color = sub || m.color;
       lyr = L.geoJSON(f, { style: { ...layerOpts(m), color: isTotal ? '#D01E1E' : color, fillColor: color, fillOpacity: base, weight: isTotal ? 3 : 1.5, dashArray: isKcncBig ? '6 6' : null, pane } }).getLayers()[0];
       lyr.options.baseFill = base;
       state.polyBase.push(lyr);
-      lyr.bindTooltip(tip(short(p), p.id.startsWith('bvlos-tieu') || p.layer === 'kcnc' ? 'min12' : ''), { permanent: true }).openTooltip?.();
+      if (!['cam_bay', 'han_che'].includes(m.id)) lyr.bindTooltip(tip(short(p), p.id.startsWith('bvlos-tieu') || p.layer === 'kcnc' ? 'min12' : ''), { permanent: true }).openTooltip?.();
       if (!isTotal) lyr.options.interactive = true;
     } else if (f.geometry.type === 'Point') {
       const [x, y] = f.geometry.coordinates;
@@ -164,6 +165,7 @@ function showDetail(f) {
   let head = `<h3>${esc(p.name)}</h3>`;
   if (STATUS[p.status]) head += `<span class="badge s-${p.status}">${STATUS[p.status]}</span>`;
   const isPoly = g.type === 'Polygon';
+  const multi = g.type === 'MultiPolygon';
   if (isPoly && p.id !== 'khu-huan-luyen-3-3ha') {
     const km2 = turf.area(f) / 1e6, per = turf.length(turf.polygonToLine(f), { units: 'kilometers' });
     add('Diện tích', `${fmt(km2, 2)} km² (${fmt(km2 * 100, 1)} ha)`);
@@ -171,6 +173,7 @@ function showDetail(f) {
     if (pub) add('Diện tích công bố', `≈ ${fmt(pub, 2)} km²`);
     add('Chu vi', `${fmt(per, 2)} km`);
   }
+  if (multi) add('Diện tích', `${fmt(turf.area(f) / 1e6, 1)} km²`);
   if (g.type === 'LineString') add('Chiều dài', `${fmt(turf.length(f, { units: 'meters' }), 0)} m`);
   if (p.phase) add('Giai đoạn', p.phase);
   if (p.terrain_m) add('Độ cao địa hình', `${p.terrain_m} m`);
@@ -185,7 +188,7 @@ function showDetail(f) {
   if (p.id === 'bvlos-tong-the') add('Xã', state.labels.bvlosArea);
   if (p.id.startsWith('son-tra')) add('Cự ly tham khảo đến sân bay', 'từ 8,9 km đến 16,6 km (biên bản khảo sát)');
   if (p.note) add('Ghi chú', esc(p.note));
-  const vs = vertexNames(f);
+  const vs = multi ? [] : vertexNames(f);
   const lineNames = p.id === 'dcc-17r-35l' ? ['Đầu 35L', 'Đầu 17R'] : null;
   if (lineNames) vs.length = 0, g.coordinates.forEach((c, i) => vs.push({ name: lineNames[i], lon: c[0], lat: c[1] }));
   const vrows = vs.map((v) => `<tr><td>${esc(v.name)}</td><td>${dec(v.lat)}<br>${dec(v.lon)}</td><td>${dms(v.lat, true)}<br>${dms(v.lon, false)}</td></tr>`).join('');
@@ -193,14 +196,13 @@ function showDetail(f) {
   const area = state.areas.find((a) => a.id === areaOf(p.id) || (p.layer === 'bvlos_diem' && a.id === 'bvlos'));
   const areaHtml = area ? `<div class="adesc"><h4>Mô tả khu vực</h4><dl><dt>Vị trí</dt><dd>${esc(area.location)}</dd><dt>Dùng để làm gì</dt><dd>${esc(area.purpose)}</dd><dt>Giới hạn và điều kiện</dt><dd>${esc(area.limits)}</dd><dt>Căn cứ</dt><dd>${esc(area.basis)}</dd></dl></div>` : '';
   const html = `${head}<div class="rows">${rows.join('')}</div>${areaHtml}
-    <h4>${isPoly || g.type === 'LineString' ? 'Đỉnh' : 'Tọa độ'} <small>(vĩ độ, kinh độ · WGS-84)</small></h4>
-    <table class="vt"><thead><tr><th></th><th>Độ thập phân</th><th>Độ-phút-giây</th></tr></thead><tbody>${vrows}</tbody></table>
-    <div class="btns"><button class="btn small" id="cp">Sao chép tọa độ</button><button class="btn small" id="ge">Mở trong Google Earth (KML)</button></div>
+    ${vs.length ? `<h4>${isPoly || g.type === 'LineString' ? 'Đỉnh' : 'Tọa độ'} <small>(vĩ độ, kinh độ · WGS-84)</small></h4><table class="vt"><thead><tr><th></th><th>Độ thập phân</th><th>Độ-phút-giây</th></tr></thead><tbody>${vrows}</tbody></table>` : ''}
+    <div class="btns">${vs.length ? '<button class="btn small" id="cp">Sao chép tọa độ</button>' : ''}<button class="btn small" id="ge">Mở trong Google Earth (KML)</button></div>
     <p class="src"><a href="#" data-src="1">Xem mô tả tất cả khu vực</a></p>
-    <p class="hint">Tọa độ là đề xuất của Đề án, chưa phải ranh giới được phép bay.</p>`;
+    <p class="hint">${['cam_bay', 'han_che'].includes(p.layer) ? 'Dữ liệu từ Cổng thông tin điện tử Bộ Quốc phòng (cambay.mod.gov.vn), chỉ để tham khảo; việc bay phải theo quy định và giấy phép của cơ quan có thẩm quyền.' : 'Tọa độ là đề xuất của Đề án, chưa phải ranh giới được phép bay.'}</p>`;
   $('#detail-body').innerHTML = html;
   $('#detail').hidden = false;
-  $('#cp').onclick = () => {
+  if ($('#cp')) $('#cp').onclick = () => {
     const t = vs.map((v) => `${v.name}\t${v.lat.toFixed(6)}\t${v.lon.toFixed(6)}`).join('\n');
     navigator.clipboard?.writeText(t);
     $('#cp').textContent = 'Đã sao chép';
@@ -288,7 +290,7 @@ function checkPoint(lat, lon) {
   const pt = turf.point([lon, lat]);
   const hits = [];
   for (const fc of Object.values(state.data)) for (const f of fc.features) {
-    if (f.geometry.type === 'Polygon' && turf.booleanPointInPolygon(pt, f)) hits.push(f.properties);
+    if ((f.geometry.type === 'Polygon' || f.geometry.type === 'MultiPolygon') && turf.booleanPointInPolygon(pt, f)) hits.push(f.properties);
   }
   const d = turf.distance(pt, turf.point([DAD.lon, DAD.lat]), { units: 'kilometers' });
   const list = hits.length ? hits.map((p) => {
@@ -382,6 +384,8 @@ function gotoTargets() {
       else { map.flyToBounds(CITY); $('#search-msg').textContent = `Hòa Vang: ${state.labels.hoaVangPlaces.join('; ')}. ${state.labels.hoaVangNote}`; }
     }],
   ];
+  t.push(['Cấm bay – hạn chế bay (sân bay)', () => { level('area'); ['cam_bay', 'han_che'].forEach(ensureOn); flyTo(L.latLngBounds([[15.9, 108.0], [16.3, 108.45]]), 11); }]);
+  t.push(['Sâm Ngọc Linh', () => { level('area'); ensureOn('sam_ngoc_linh'); flyTo(boundsOf(['sam_ngoc_linh']), 11); }]);
   state.data.qd4167.features.forEach((f) => t.push([f.properties.name.split(' – ')[0] + ' (QĐ 4167)', () => { level('area'); flyTo(L.geoJSON(f).getBounds(), 13); showDetail(f); }]));
   return t;
 }
@@ -418,6 +422,9 @@ function buildSidebar() {
     <div><i class="sw" style="font-style:normal;text-align:center;line-height:10px">★</i>Sân bay Đà Nẵng</div>
     <div><i class="sw" style="color:#F2B705;text-align:center;line-height:10px">▲</i>Bà Nà Hills</div>
     <div><i class="sw" style="background:#00B8D966;border:1px solid #00B8D9"></i>Hành lang Cù Lao Chàm</div>
+    <div><i class="sw" style="background:#EF444499"></i>Khu vực cấm bay</div>
+    <div><i class="sw" style="background:#F0A74299"></i>Khu vực hạn chế bay</div>
+    <div><i class="sw" style="background:#6AA84F88"></i>Vùng sâm Ngọc Linh</div>
     <div><i class="sw" style="background:#E83E8C66;border:1px solid #E83E8C"></i>Hành lang Khu CNC – Hòa Vang</div>
     <div><i class="sw" style="border-top:2px dashed #888;height:0"></i>Vòng 15 km (minh họa)</div>`;
 }

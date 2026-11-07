@@ -9,6 +9,10 @@
       "name": "Vùng trời và không phận"
     },
     {
+      "id": "cam_bay_grp",
+      "name": "Cấm bay và hạn chế bay (Bộ Quốc phòng)"
+    },
+    {
       "id": "de_an",
       "name": "Đề án"
     }
@@ -127,6 +131,42 @@
       "color": "#E83E8C",
       "fillOpacity": 0.4,
       "order": 8,
+      "default": true,
+      "source": "S2",
+      "geometry": "polygon"
+    },
+    {
+      "id": "cam_bay",
+      "name": "Khu vực cấm bay (vùng đỏ)",
+      "group": "cam_bay_grp",
+      "file": "cam_bay.geojson",
+      "color": "#EF4444",
+      "fillOpacity": 0.45,
+      "order": 0,
+      "default": true,
+      "source": "S7",
+      "geometry": "polygon"
+    },
+    {
+      "id": "han_che",
+      "name": "Khu vực hạn chế bay (vùng cam)",
+      "group": "cam_bay_grp",
+      "file": "han_che.geojson",
+      "color": "#F0A742",
+      "fillOpacity": 0.4,
+      "order": 0,
+      "default": true,
+      "source": "S7",
+      "geometry": "polygon"
+    },
+    {
+      "id": "sam_ngoc_linh",
+      "name": "Vùng sâm Ngọc Linh (Nam Trà My)",
+      "group": "de_an",
+      "file": "sam_ngoc_linh.geojson",
+      "color": "#6AA84F",
+      "fillOpacity": 0.35,
+      "order": 2,
       "default": true,
       "source": "S2",
       "geometry": "polygon"

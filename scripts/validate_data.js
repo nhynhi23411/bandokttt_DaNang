@@ -19,7 +19,7 @@ for (const l of manifest.layers) {
     const pts = [];
     const walk = (c) => (typeof c[0] === 'number' ? pts.push(c) : c.forEach(walk));
     walk(f.geometry.coordinates);
-    for (const [x, y] of pts) if (y < 15.3 || y > 16.3 || x < 107.7 || x > 108.7) fail(`${p.id}: tọa độ ngoài khung (${y}, ${x})`);
+    for (const [x, y] of pts) if (y < 14.9 || y > 16.5 || x < 107.5 || x > 108.9) fail(`${p.id}: tọa độ ngoài khung (${y}, ${x})`);
     if (f.geometry.type === 'Polygon') {
       const r = f.geometry.coordinates[0];
       const a = r[0], b = r[r.length - 1];

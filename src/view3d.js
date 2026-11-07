@@ -45,10 +45,12 @@ export function open3D({ el, data, manifest, center, zoom, onPick }) {
     const dad = all('san_bay').find((f) => f.geometry.type === 'Point');
     add('ring', dad ? [turf.polygonToLine(turf.circle(dad.geometry.coordinates, 15, { units: 'kilometers', steps: 128 }))] : []);
     add('pts', [...all('bvlos_diem'), ...all('son_tra')]);
+    add('nofly', all('cam_bay')); add('restr', all('han_che')); add('sam', all('sam_ngoc_linh'));
     add('hl', [...all('hanh_lang'), ...all('hanh_lang_dat')].filter((f) => f.geometry.type === 'Polygon'));
 
     const fill = (id, src, color, op) => map.addLayer({ id, type: 'fill', source: src, paint: { 'fill-color': color, 'fill-opacity': op } });
     const line = (id, src, color, w, dash) => map.addLayer({ id, type: 'line', source: src, paint: { 'line-color': color, 'line-width': w, ...(dash ? { 'line-dasharray': dash } : {}) } });
+    fill('restr-f', 'restr', '#F0A742', 0.35); fill('nofly-f', 'nofly', '#EF4444', 0.4); fill('sam-f', 'sam', '#6AA84F', 0.35); line('sam-l', 'sam', '#6AA84F', 2);
     fill('qd-f', 'qd', '#2A6FD0', 0.25); line('qd-l', 'qd', '#2A6FD0', 2);
     fill('hv-f', 'hv', '#0E9F9F', 0.4); line('hv-l', 'hv', '#0E9F9F', 2);
     fill('kcnc-f', 'kcnc', '#8A3CA0', 0.5); line('kcnc-l', 'kcnc', '#8A3CA0', 2);
