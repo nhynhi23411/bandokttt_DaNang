@@ -74,7 +74,8 @@
       "order": 7,
       "default": true,
       "source": "S2",
-      "geometry": "point"
+      "geometry": "mixed",
+      "fillOpacity": 0.2
     },
     {
       "id": "hoa_vang",

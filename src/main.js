@@ -102,7 +102,7 @@ function buildLayer(m, fc) {
       const base = isTotal ? 0 : isKcncBig ? 0.08 : (m.fillOpacity ?? 0.3);
       const pane = ['cam_bay', 'han_che', 'sam_ngoc_linh'].includes(m.id) ? 'p-nofly' : m.id === 'qd4167' ? 'p-qd' : m.id === 'kcnc' ? 'p-kcnc' : isTotal ? 'p-outline' : p.id === 'bvlos-tieu-khu-a' ? 'p-a' : p.id === 'bvlos-tieu-khu-b' ? 'p-b' : 'p-qd';
       const color = sub || m.color;
-      lyr = L.geoJSON(f, { style: { ...layerOpts(m), color: isTotal ? '#D01E1E' : color, fillColor: color, fillOpacity: base, weight: isTotal ? 3 : 1.5, dashArray: isKcncBig ? '6 6' : null, pane } }).getLayers()[0];
+      lyr = L.geoJSON(f, { style: { ...layerOpts(m), color: isTotal ? '#D01E1E' : p.id === 'vung-xanh-son-tra' ? '#ffffff' : color, fillColor: color, fillOpacity: base, weight: isTotal ? 3 : 1.5, dashArray: isKcncBig ? '6 6' : p.id === 'vung-xanh-son-tra' ? '8 5' : null, pane } }).getLayers()[0];
       lyr.options.baseFill = base;
       state.polyBase.push(lyr);
       if (!['cam_bay', 'han_che'].includes(m.id)) lyr.bindTooltip(tip(short(p), p.id.startsWith('bvlos-tieu') || p.layer === 'kcnc' ? 'min12' : ''), { permanent: true }).openTooltip?.();
