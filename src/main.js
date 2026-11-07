@@ -386,7 +386,6 @@ function gotoTargets() {
   ];
   t.push(['Cấm bay – hạn chế bay (sân bay)', () => { level('area'); ['cam_bay', 'han_che'].forEach(ensureOn); flyTo(L.latLngBounds([[15.9, 108.0], [16.3, 108.45]]), 11); }]);
   t.push(['Sâm Ngọc Linh', () => { level('area'); ensureOn('sam_ngoc_linh'); flyTo(boundsOf(['sam_ngoc_linh']), 11); }]);
-  state.data.qd4167.features.forEach((f) => t.push([f.properties.name.split(' – ')[0] + ' (QĐ 4167)', () => { level('area'); flyTo(L.geoJSON(f).getBounds(), 13); showDetail(f); }]));
   return t;
 }
 $$('#levels button').forEach((b) => (b.onclick = () => {
@@ -417,7 +416,6 @@ function buildSidebar() {
     <div><i class="sw" style="background:#2E9A3C99"></i>Tiểu khu A</div>
     <div><i class="sw" style="background:#E0781499"></i>Tiểu khu B</div>
     <div><i class="sw" style="background:#8A3CA099"></i>Khu huấn luyện – Khu CNC</div>
-    <div><i class="sw" style="background:#2A6FD066"></i>Khu vực QĐ 4167</div>
     <div><i class="dot" style="background:#D02020"></i>Vùng xanh Sơn Trà (đệm 100 m)</div>
     <div><i class="sw" style="font-style:normal;text-align:center;line-height:10px">★</i>Sân bay Đà Nẵng</div>
     <div><i class="sw" style="color:#F2B705;text-align:center;line-height:10px">▲</i>Bà Nà Hills</div>

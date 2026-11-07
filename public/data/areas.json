@@ -81,36 +81,6 @@
     "basis": "Đề án v20, Mục B.III.3; kết quả khảo sát thực địa của Công ty TNHH SkyOrder; Công văn số 7167/QLB-KL."
   },
   {
-    "id": "qd-3",
-    "name": "Khu vực 3 – Đô thị Tam Kỳ và vùng phụ cận (QĐ 4167)",
-    "status": "Đã thiết lập",
-    "features": [
-      "qd4167-khu-3"
-    ],
-    "layers": [
-      "qd4167"
-    ],
-    "location": "Khu vực xung quanh đô thị Tam Kỳ, ở phía Nam của Thành phố, xác định bằng đa giác bốn điểm.",
-    "purpose": "Khu vực vùng trời theo Quyết định 4167 cho hoạt động của tổ chức, hội, câu lạc bộ có phương tiện bay.",
-    "limits": "Cần giấy phép bay. Hồ sơ chưa có trần độ cao.",
-    "basis": "Quyết định số 4167/QĐ-UBND; Công văn số 9749/UBND-KGVX."
-  },
-  {
-    "id": "qd-4",
-    "name": "Khu vực 4 – Tiên Phước, đồi, đất trống, thưa dân cư (QĐ 4167)",
-    "status": "Đã thiết lập",
-    "features": [
-      "qd4167-khu-4"
-    ],
-    "layers": [
-      "qd4167"
-    ],
-    "location": "Vùng đồi, đất trống, thưa dân cư tại Tiên Phước, ở phía Nam của Thành phố, xác định bằng đa giác bốn điểm nhỏ.",
-    "purpose": "Khu vực vùng trời theo Quyết định 4167 cho hoạt động của tổ chức, hội, câu lạc bộ có phương tiện bay.",
-    "limits": "Cần giấy phép bay; hồ sơ chưa có trần độ cao. Lưu ý: Đề án v20 ghi Tiên Phước không được coi là khu vực đã thiết lập theo Quyết định 4167; cần đối chiếu với phụ lục Quyết định trước khi công bố.",
-    "basis": "Quyết định số 4167/QĐ-UBND; Đề án v20."
-  },
-  {
     "id": "hanh-lang-dat",
     "name": "Hành lang bay thử trong đất liền: Khu công nghệ cao – Hòa Vang",
     "status": "Đề xuất",

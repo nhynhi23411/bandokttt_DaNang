@@ -66,12 +66,6 @@
       ],
       "ceilingText": "Cao độ khoảng 10–11 m",
       "area": "san-bay"
-    },
-    {
-      "name": "Các khu vực vùng trời – QĐ 4167",
-      "color": "#2A6FD0",
-      "ceilingText": "Hồ sơ chưa có trần độ cao của các khu vực",
-      "area": "qd-3"
     }
   ]
 }

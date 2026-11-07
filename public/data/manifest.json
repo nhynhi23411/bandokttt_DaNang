@@ -19,18 +19,6 @@
   ],
   "layers": [
     {
-      "id": "qd4167",
-      "name": "Khu vực vùng trời – QĐ 4167",
-      "group": "vung_troi",
-      "file": "qd4167.geojson",
-      "color": "#2A6FD0",
-      "fillOpacity": 0.25,
-      "order": 1,
-      "default": true,
-      "source": "S3",
-      "geometry": "polygon"
-    },
-    {
       "id": "san_bay",
       "name": "Sân bay Đà Nẵng, đường cất hạ cánh, vòng 15 km (minh họa)",
       "group": "vung_troi",
