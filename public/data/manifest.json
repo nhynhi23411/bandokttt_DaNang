@@ -19,6 +19,17 @@
   ],
   "layers": [
     {
+      "id": "ranh_gioi",
+      "name": "Ranh giới Thành phố Đà Nẵng",
+      "group": "vung_troi",
+      "file": "ranh_gioi.geojson",
+      "color": "#ffffff",
+      "order": 0,
+      "default": true,
+      "source": "S9",
+      "geometry": "polygon"
+    },
+    {
       "id": "san_bay",
       "name": "Sân bay Đà Nẵng, đường cất hạ cánh, vòng 15 km (minh họa)",
       "group": "vung_troi",

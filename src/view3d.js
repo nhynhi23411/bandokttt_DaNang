@@ -38,7 +38,7 @@ export function open3D({ el, data, manifest, center, zoom, onPick }) {
     map.setTerrain({ source: 'dem', exaggeration: 1 });
     const add = (id, features) => map.addSource(id, { type: 'geojson', data: { type: 'FeatureCollection', features } });
 
-    add('qd', all('qd4167')); add('hv', all('hoa_vang')); add('kcnc', all('kcnc'));
+    add('bd', all('ranh_gioi')); add('qd', all('qd4167')); add('hv', all('hoa_vang')); add('kcnc', all('kcnc'));
     add('ab', all('bvlos').filter((f) => f.properties.id !== 'bvlos-tong-the'));
     add('tong', all('bvlos').filter((f) => f.properties.id === 'bvlos-tong-the'));
     add('runway', all('san_bay').filter((f) => f.geometry.type === 'LineString'));
@@ -64,6 +64,7 @@ export function open3D({ el, data, manifest, center, zoom, onPick }) {
         'fill-extrusion-opacity': 0.5,
       },
     });
+    line('bd-l', 'bd', '#ffffff', 2, [4, 3]);
     line('tong-l', 'tong', '#D01E1E', 3);
     line('ring-l', 'ring', '#dddddd', 2, [3, 3]);
     line('rw', 'runway', '#111111', 4);

@@ -95,6 +95,10 @@ function buildLayer(m, fc) {
   for (const f of fc.features) {
     const p = f.properties;
     let lyr;
+    if (m.id === 'ranh_gioi') {
+      g.addLayer(L.geoJSON(f, { pane: 'p-outline', interactive: false, style: { color: '#ffffff', weight: 2.5, dashArray: '10 6', fill: false, opacity: 0.95 } }));
+      continue;
+    }
     if (f.geometry.type === 'Polygon' || f.geometry.type === 'MultiPolygon') {
       const sub = (m.id === 'bvlos' && p.id !== 'bvlos-tong-the') ? state.manifest.subColors[p.id] : null;
       const isTotal = p.id === 'bvlos-tong-the';
@@ -420,6 +424,7 @@ function buildSidebar() {
     <div><i class="sw" style="font-style:normal;text-align:center;line-height:10px">★</i>Sân bay Đà Nẵng</div>
     <div><i class="sw" style="color:#F2B705;text-align:center;line-height:10px">▲</i>Bà Nà Hills</div>
     <div><i class="sw" style="background:#00B8D966;border:1px solid #00B8D9"></i>Hành lang Cù Lao Chàm</div>
+    <div><i class="sw" style="border:0;border-top:3px dashed #888;height:0;background:none"></i>Ranh giới Thành phố Đà Nẵng</div>
     <div><i class="sw" style="background:#EF444499"></i>Khu vực cấm bay</div>
     <div><i class="sw" style="background:#F0A74299"></i>Khu vực hạn chế bay</div>
     <div><i class="sw" style="background:#6AA84F88"></i>Vùng sâm Ngọc Linh</div>

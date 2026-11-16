@@ -62,5 +62,13 @@
     "agency": "Công an cửa khẩu Cảng hàng không quốc tế Đà Nẵng",
     "status": "Sơ đồ công bố",
     "usedFor": "Hình dạng vùng cấm bay, hạn chế bay quanh sân bay Đà Nẵng"
+  },
+  {
+    "id": "S9",
+    "title": "Ranh giới hành chính cấp tỉnh (34 tỉnh, thành phố sau năm 2025), đơn vị Thành phố Đà Nẵng – bộ dữ liệu công khai Free-GIS-Data; đã đơn giản hóa đường biên, chỉ lấy phần đất liền và đảo ven bờ",
+    "date": "2025",
+    "agency": "Dữ liệu công khai (nguyenduy1133/Free-GIS-Data, theo bản đồ hành chính của Nhà xuất bản Bản đồ)",
+    "status": "Dữ liệu công khai",
+    "usedFor": "Đường viền ranh giới Thành phố Đà Nẵng"
   }
 ]
