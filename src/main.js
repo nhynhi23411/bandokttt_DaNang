@@ -41,13 +41,17 @@ bases.sat.addTo(map);
 $$('#basemaps button').forEach((b) => b.addEventListener('click', () => setBase(b.dataset.base)));
 
 // ---------- Tiện ích hình học ----------
-const short = (p) => {
+const short = (p) => (p.ky_hieu ? `${p.ky_hieu} · ` : '') + shortBase(p);
+const shortBase = (p) => {
   if (p.id === 'bvlos-tong-the') return `Khu BVLOS · ${state.labels.bvlosArea}`;
   if (p.id === 'bvlos-tieu-khu-a') return 'Tiểu khu A';
   if (p.id === 'bvlos-tieu-khu-b') return 'Tiểu khu B';
   if (p.id === 'hanh-lang-s1') return 'Hành lang S1 · khoảng 36 km';
   if (p.id === 'hanh-lang-s2') return 'Hành lang S2 · khoảng 26 km';
   if (p.id === 'khu-huan-luyen-3-3ha') return 'Khu huấn luyện';
+  if (p.id === 'vung-xanh-son-tra') return 'Vùng xanh Sơn Trà';
+  if (p.id === 'vong-cu-lao-cham') return 'Vùng bay quanh Cù Lao Chàm';
+  if (p.id === 'hoa-vang') return 'Hòa Vang';
   if (p.id === 'khu-huan-luyen-kcnc') return 'Khu công nghệ cao (phạm vi theo Đề án)';
   
   if (p.layer === 'qd4167') return p.name.split(' – ')[0];
@@ -66,6 +70,7 @@ function vertexNames(f) {
   return ring.map((c, i) => {
     const d = diem.find((q) => q.geometry.coordinates[0] === c[0] && q.geometry.coordinates[1] === c[1]);
     let n = d ? d.properties.name : null;
+    if (!n && p.ky_hieu) n = 'ABCD'[i] || `Đỉnh ${i + 1}`;
     if (!n && p.id === 'khu-huan-luyen-kcnc') n = `K${i + 1}`;
     if (!n && p.layer === 'qd4167') n = `Điểm ${i + 1}`;
     return { name: n || `Đỉnh ${i + 1}`, lon: c[0], lat: c[1] };
@@ -416,7 +421,7 @@ function buildSidebar() {
     $('#goto').append(b);
   });
   $('#legend').innerHTML = `<b>Chú giải</b>
-    <div><i class="sw" style="border:3px solid #D01E1E"></i>Khu BVLOS (P1–P4)</div>
+    <div><i class="sw" style="border:3px solid #D01E1E"></i>Không vực U1 – Khu BVLOS (A–D)</div>
     <div><i class="sw" style="background:#2E9A3C99"></i>Tiểu khu A</div>
     <div><i class="sw" style="background:#E0781499"></i>Tiểu khu B</div>
     <div><i class="sw" style="background:#8A3CA099"></i>Khu huấn luyện – Khu CNC</div>
