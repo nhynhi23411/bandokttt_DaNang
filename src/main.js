@@ -116,6 +116,12 @@ function buildLayer(m, fc) {
       state.polyBase.push(lyr);
       if (!['cam_bay', 'han_che'].includes(m.id)) lyr.bindTooltip(tip(short(p), p.id.startsWith('bvlos-tieu') || p.layer === 'kcnc' ? 'min12' : ''), { permanent: true }).openTooltip?.();
       if (!isTotal) lyr.options.interactive = true;
+      if (p.ky_hieu && !isTotal && f.geometry.type === 'Polygon') {
+        f.geometry.coordinates[0].slice(0, -1).forEach(([x, y], i) => {
+          g.addLayer(L.circleMarker([y, x], { pane: 'p-pts', radius: 4, color: '#000', weight: 2, fillColor: '#fff', fillOpacity: 1, interactive: false })
+            .bindTooltip(tip('ABCD'[i], 'bold', i === 0 || i === 3 ? 'left' : 'right'), { permanent: true }));
+        });
+      }
     } else if (f.geometry.type === 'Point') {
       const [x, y] = f.geometry.coordinates;
       if (m.id === 'san_bay') {
