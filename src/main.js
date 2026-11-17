@@ -416,7 +416,7 @@ function buildSidebar() {
     $('#goto').append(b);
   });
   $('#legend').innerHTML = `<b>Chú giải</b>
-    <div><i class="sw" style="border:3px solid #D01E1E"></i>Khu BVLOS (P1–P6)</div>
+    <div><i class="sw" style="border:3px solid #D01E1E"></i>Khu BVLOS (P1–P4)</div>
     <div><i class="sw" style="background:#2E9A3C99"></i>Tiểu khu A</div>
     <div><i class="sw" style="background:#E0781499"></i>Tiểu khu B</div>
     <div><i class="sw" style="background:#8A3CA099"></i>Khu huấn luyện – Khu CNC</div>

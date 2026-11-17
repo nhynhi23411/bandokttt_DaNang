@@ -42,7 +42,7 @@
     },
     {
       "id": "bvlos",
-      "name": "Khu BVLOS (P1–P6), Tiểu khu A và B",
+      "name": "Khu BVLOS (P1–P4), Tiểu khu A và B",
       "group": "de_an",
       "file": "bvlos.geojson",
       "color": "#D01E1E",
@@ -54,7 +54,7 @@
     },
     {
       "id": "bvlos_diem",
-      "name": "Điểm góc P1–P6, A1–A3",
+      "name": "Điểm góc P1–P4, A1–A3",
       "group": "de_an",
       "file": "bvlos_diem.geojson",
       "color": "#111111",
