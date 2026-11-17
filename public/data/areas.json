@@ -10,7 +10,7 @@
       "bvlos",
       "bvlos_diem"
     ],
-    "location": "Hình vuông bốn điểm góc P1–P4 nằm giữa sườn Nam dãy Hải Vân và khối núi Bà Nà, phía Đông giáp vùng hồ Hòa Trung. Hình vuông cạnh khoảng 6 km, bao gồm hồ nước và thung lũng hồ Hòa Trung; diện tích khoảng 36,2 km², chu vi khoảng 24,1 km. Ranh giới gần nhất cách điểm quy chiếu sân bay khoảng 15 km về phía Tây; khu du lịch Sun World Bà Nà Hills nằm ngoài ranh giới, về phía Nam.",
+    "location": "Hình vuông bốn điểm góc P1–P4 nằm giữa sườn Nam dãy Hải Vân và khối núi Bà Nà, phía Đông giáp vùng hồ Hòa Trung. Hình vuông cạnh khoảng 6 km, cạnh phía Đông liền kề Tiểu khu A (thung lũng hồ Hòa Trung); diện tích khoảng 36,2 km², chu vi khoảng 24,1 km. Ranh giới gần nhất cách điểm quy chiếu sân bay khoảng 15 km về phía Tây; khu du lịch Sun World Bà Nà Hills nằm ngoài ranh giới, về phía Nam.",
     "purpose": "Kiểm chứng công nghệ phục vụ nhiệm vụ công của Đề án: phát hiện sớm cháy rừng, đánh giá thiệt hại thiên tai, vận chuyển hàng hóa vùng núi và thu thập dữ liệu cho bản sao số Thành phố.",
     "limits": "Địa hình không đồng nhất (24–1.074 m) nên khu vực chia thành hai tiểu khu có giới hạn độ cao riêng. Mỗi đợt bay phải có kế hoạch bay được cấp phép.",
     "basis": "Đề án v20, Mục B.IV; Báo cáo của Sở Khoa học và Công nghệ về kết quả Hội nghị ngày 02/11/2026 tại Sư đoàn Không quân 372 (dự thảo)."
@@ -40,7 +40,7 @@
     "layers": [
       "bvlos"
     ],
-    "location": "Phần phía Tây và trung tâm của khu BVLOS, phần còn lại của hình vuông P1–P4 sau khi trừ Tiểu khu A. Diện tích khoảng 27,9 km².",
+    "location": "Phần phía Tây và trung tâm của khu BVLOS, toàn bộ hình vuông P1–P4, liền kề Tiểu khu A ở phía Đông. Diện tích khoảng 36,2 km².",
     "purpose": "Giai đoạn 2 (bước 2): mở rộng bay BVLOS sang vùng núi sau khi có ý kiến bằng văn bản của Công ty Quản lý bay miền Trung và Sư đoàn Không quân 372 về trần độ cao.",
     "limits": "Không quá 200 m so với mặt đất; trần đề xuất 900 m so với mực nước biển, chờ ý kiến cơ quan quản lý bay. Chỉ bay trên địa hình không quá 700 m; các đỉnh cao hơn 700 m được thiết lập vùng cấm trong phần mềm điều khiển bay.",
     "basis": "Đề án v20, Mục B.IV; Báo cáo của Sở Khoa học và Công nghệ (dự thảo)."
